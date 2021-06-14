@@ -318,3 +318,18 @@ div button.dpdown1 img{
     width: auto;
     height: 300px;
 }
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(107, 107, 107, 0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 5px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #34b44f;
+}

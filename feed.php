@@ -5,6 +5,7 @@
     $email = isset($_SESSION['email'])? $_SESSION['email'] : null;
     $con = mysqli_connect($server,$username,$password,$dbname);
     $query = "SELECT * FROM acc WHERE email = '$email'";
+    include_once 'feed_files/fid.php';
     if(isset($_POST['btnPost'])){
         $recName = $_POST['recname'];
         $timePrep = $_POST['preptime'];
