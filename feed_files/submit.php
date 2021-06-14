@@ -8,45 +8,30 @@
 		$row2 = mysqli_fetch_assoc($sql1);
 		$fID = intval($row2['food_id'])+1;
 
+		$c=1;
 		$ingsArray=$_POST["ingArray"];
 		$ing = array_merge(...$ingsArray);
-		$ings = implode("','", $ing);
+
 
 		$ingsAmt=$_POST["ingAmt"];
 		$amt = array_merge(...$ingsAmt);
-		$amts = implode("','", $amt);
+
 
 		$categ=$_POST["categ"];
 
-		$sql2="SELECT * FROM ingredients_all WHERE ing_name ='$ings'";
-		$result1 = $con -> query($sql2);
-		if($result1-> num_rows == 0){
-			$sqlInsert = "INSERT INTO ingredients_all (ing_name) VALUE ('$ings')";
-			mysqli_query($con,$sqlInsert);
-		}
-		/*$sql="SELECT * FROM food 
-				LEFT OUTER JOIN veggies ON veggies.food_id = food.food_id
-				LEFT OUTER JOIN meat ON meat.food_id = veggies.food_id
-				LEFT OUTER JOIN condiments ON condiments.food_id = meat.food_id
-				HAVING veggies_name IN ($ings) OR meat_name IN ($ings) OR condi_name IN ($ings)";*/
 
-		$sql="INSERT INTO ".$categ."(".$categ."_name, ".$categ."_amt, food_id) 
-                    VALUES ('$ings', '$amts', '$fID')";
+		foreach (array_combine($ing, $amt) as $ing => $amt) {
+			$ings = strval($ing);
+			$amts = strval($amt);
+
+			$sql="INSERT INTO ".$categ."(".$categ."_name, ".$categ."_amt, food_id) VALUES ('$ings', '$amts', '$fID')";
 		
-		mysqli_query($con,$sql);
-      	/*if($sql->num_rows > 0){
-      	$prevID = false;
-        	while($row=$sql->fetch_assoc()){	
-        		$fID = $row["food_id"];
-        		$fAuthor = $row["author"];
-        		$fName = $row["food_name"];
-
-            	if($prevID == $fID){
-            		$fID = '';}
-            	else{
-            		echo '</br>Recipe:  '.$fName.' by <b>'.$fAuthor.'</b></br>';
-            	}$prevID = $row["food_id"];
-            }
-      	}
-      	else{echo 'No recipe found with this ingredient!';}*/
+			$result = mysqli_query($con,$sql);
+			$sql2="SELECT * FROM ingredients_all WHERE ing_name ='$ings'";
+			$result1 = $con -> query($sql2);
+			if($result1-> num_rows == 0){
+				$sqlInsert = "INSERT INTO ingredients_all (ing_name) VALUE ('$ings')";
+				mysqli_query($con,$sqlInsert);
+			}
+		}
 ?>

@@ -12,14 +12,15 @@
         $serveSize = $_POST['serve'];
         $procedure = $_POST['proce'];
         $nutriValue = $_POST['nutrval'];
+        $ytlink = $_POST['ytlink'];
 
         $query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
         $sql1 = mysqli_query($con, $query1);
         $row2 = mysqli_fetch_assoc($sql1);
         $fID = intval($row2['food_id'])+1;
 
-        $insert="INSERT INTO food(food_id, food_name, author, prep_time, cook_time, servings, proced, nutri_info, likes) 
-                    VALUES ('$fID','$recName' ,'$email', '$timePrep', '$timeCook', '$serveSize', '$procedure', '$nutriValue', '0')";
+        $insert="INSERT INTO food(food_id, food_name, author, prep_time, cook_time, servings, video_link, proced, nutri_info, likes) 
+                    VALUES ('$fID','$recName' ,'$email', '$timePrep', '$timeCook', '$serveSize', '$ytlink', '$procedure', '$nutriValue', '0')";
 
         mysqli_query($con, $insert);
         header("location: feed.php");
@@ -346,7 +347,46 @@ $(document).ready(function () {
                         $('#response').html("");
     });
 });
+var croppieDemo = $('#croppie-demo').croppie({
+            enableOrientation: true,
+            viewport: {
+                width: 266.7,
+                height: 366.7,
+            },
+            boundary: {
+                width: 300,
+                height: 400
+            }
+        });
 
+        $('#croppie-input').on('change', function () { 
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                croppieDemo.croppie('bind', {
+                    url: e.target.result
+                });
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        $('.croppie-upload').on('click', function (ev) {
+            croppieDemo.croppie('result', {
+                type: 'canvas',
+                size: {width: 400,height: 550,}
+            }).then(function (image) {
+                var ext = $('#croppie-input').val().split('.').pop().toLowerCase();
+                if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+                alert('Invalid form input!');
+                }
+                $.ajax({
+                    url: "feed_files/upload.php",
+                    type: "POST",
+                    data: {
+                        "image" : image
+                    },
+                });
+            });
+        });
 $("#postbtn").click(function(){
     var meatArray = [];var meatAmt = [];
     var seaArray = [];var seaAmt = [];
@@ -625,46 +665,6 @@ $("#postbtn").click(function(){
         }    
      });
  }); 
- var croppieDemo = $('#croppie-demo').croppie({
-            enableOrientation: true,
-            viewport: {
-                width: 266.7,
-                height: 366.7,
-            },
-            boundary: {
-                width: 300,
-                height: 400
-            }
-        });
-
-        $('#croppie-input').on('change', function () { 
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                croppieDemo.croppie('bind', {
-                    url: e.target.result
-                });
-            }
-            reader.readAsDataURL(this.files[0]);
-        });
-
-        $('.croppie-upload').on('click', function (ev) {
-            croppieDemo.croppie('result', {
-                type: 'canvas',
-                size: {width: 400,height: 550,}
-            }).then(function (image) {
-                var ext = $('#croppie-input').val().split('.').pop().toLowerCase();
-                if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-                alert('Invalid form input!');
-                }
-                $.ajax({
-                    url: "feed_files/upload.php",
-                    type: "POST",
-                    data: {
-                        "image" : image
-                    },
-                });
-            });
-        });
         $('button#postbtn').prop('disabled', true);
         $('textarea').keyup(function(){
         if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0){

@@ -247,15 +247,17 @@ if($result = $con->query($queryc)){
   echo '<div class="col-12 Indention-Ing">
   - '.$procedure.'
   </div>';
-  echo '<h2 class="col-12 Ingredient-Title">
-        Nutritional Information
-        </h2>';
-  $result = $con->query($queryf);
+  if($result = $con->query($queryf)){
   $row = $result->fetch_assoc();
+  $check = $row['nutri_info'];
+  if(strlen($check)>0){
+  echo '<h2 class="col-12 Ingredient-Title">Nutritional Information</h2>';
   $nutri_info = $row["nutri_info"];
   echo '<div class="col-12 Indention-Ing">
   - '.$nutri_info.'
   </div>';
+  }
+}
   echo '</div></div></div>
   <div class="container-fluid spacing">
   <div class="row">
