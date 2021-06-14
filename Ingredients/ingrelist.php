@@ -59,7 +59,7 @@ if ($result = $con->query($querym)){
 
     $row=$result->fetch_assoc();
     $check = $row['meat_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
     echo '<h4 class="col-12 Indention-Ing font-weight-bold">Meats:</h4>';
     $result = $con->query($querym);
     while($row = $result->fetch_assoc()) {
@@ -75,7 +75,7 @@ if ($result = $con->query($querym)){
 if ($result = $con->query($queryfh)){
     $row=$result->fetch_assoc();
     $check = $row['fish_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
     echo '<h4 class="col-12 Indention-Ing font-weight-bold">Fish/Seafood:</h4>';
     $result = $con->query($queryfh);
     while($row = $result->fetch_assoc()) {
@@ -90,7 +90,7 @@ if ($result = $con->query($queryfh)){
 if ($result = $con->query($queryo)){
     $row=$result->fetch_assoc();
     $check = $row['oil_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
     echo '<h4 class="col-12 Indention-Ing font-weight-bold">Oil/Liquid:</h4>';
     $result = $con->query($queryo);
     while($row = $result->fetch_assoc()) {
@@ -107,7 +107,7 @@ if ($result = $con->query($queryo)){
 if($result = $con->query($queryv)){
     $row=$result->fetch_assoc();
     $check = $row['veggies_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
   echo '<h4 class="col-12 Indention-Ing font-weight-bold">Vegetables:</h4>';
   $result = $con->query($queryv);
     while($row = $result->fetch_assoc()) {
@@ -122,7 +122,7 @@ if($result = $con->query($queryv)){
 if ($result = $con->query($queryft)){
     $row=$result->fetch_assoc();
     $check = $row['fruit_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
     echo '<h4 class="col-12 Indention-Ing font-weight-bold">Fruits:</h4>';
     $result = $con->query($queryft);
     while($row = $result->fetch_assoc()) {
@@ -137,7 +137,7 @@ if ($result = $con->query($queryft)){
 if ($result = $con->query($queryss)){
     $row=$result->fetch_assoc();
     $check = $row['spice_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
     echo '<h4 class="col-12 Indention-Ing font-weight-bold">Spices/Seasonings/Sweeteners:</h4>';
     $result = $con->query($queryss);
     while($row = $result->fetch_assoc()) {
@@ -152,7 +152,7 @@ if ($result = $con->query($queryss)){
 if ($result = $con->query($queryd)){
   $row=$result->fetch_assoc();
   $check = $row['dairy_name'];
-    if(strlen($check)>0){
+    if(isset($check)){
     echo '<h4 class="col-12 Indention-Ing font-weight-bold">Dairy:</h4>';
     $result = $con->query($queryd);
     while($row = $result->fetch_assoc()) {
@@ -167,7 +167,7 @@ if ($result = $con->query($queryd)){
 if($result = $con->query($queryc)){
   $row=$result->fetch_assoc();
   $check = $row['condi_name'];
-    if(strlen($check)>0){
+    if(isset($check)){
   echo '<h4 class="col-12 Indention-Ing font-weight-bold">Condiments:</h4>';
   $result = $con->query($queryc);
     while($row = $result->fetch_assoc()) {
@@ -182,7 +182,7 @@ if($result = $con->query($queryc)){
   if ($result = $con->query($querysc)){
     $row=$result->fetch_assoc();
     $check = $row['soup_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
       echo '<h4 class="col-12 Indention-Ing font-weight-bold">Soup/Sauces:</h4>';
       $result = $con->query($querysc);
       while($row = $result->fetch_assoc()) {
@@ -197,7 +197,7 @@ if($result = $con->query($queryc)){
   if ($result = $con->query($queryds)){
     $row=$result->fetch_assoc();
     $check = $row['dessert_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
       echo '<h4 class="col-12 Indention-Ing font-weight-bold">Dessert/Snacks:</h4>';
       $result = $con->query($queryds);
       while($row = $result->fetch_assoc()) {
@@ -212,7 +212,7 @@ if($result = $con->query($queryc)){
   if ($result = $con->query($queryn)){
     $row=$result->fetch_assoc();
     $check = $row['nuts_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
       echo '<h4 class="col-12 Indention-Ing font-weight-bold">Nuts/Legumes:</h4>';
       $result = $con->query($queryn);
       while($row = $result->fetch_assoc()) {
@@ -227,7 +227,7 @@ if($result = $con->query($queryc)){
   if ($result = $con->query($queryb)){
     $row=$result->fetch_assoc();
     $check = $row['bake_name'];
-      if(strlen($check)>0){
+      if(isset($check)){
       echo '<h4 class="col-12 Indention-Ing font-weight-bold">Baking & Grains:</h4>';
       $result = $con->query($queryb);
       while($row = $result->fetch_assoc()) {
@@ -252,7 +252,7 @@ if($result = $con->query($queryc)){
   if($result = $con->query($queryf)){
   $row = $result->fetch_assoc();
   $check = $row['nutri_info'];
-  if(strlen($check)>0){
+  if(isset($check)){
   echo '<h2 class="col-12 Ingredient-Title font-weight-bold">Nutritional Information</h2>';
   $nutri_info = $row["nutri_info"];
   echo '<div class="col-12">
