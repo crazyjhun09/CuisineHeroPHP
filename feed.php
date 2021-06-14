@@ -15,14 +15,15 @@
         $ytlink = $_POST['ytlink'];
 
         $query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
-        $sql1 = mysqli_query($con, $query1);
-        $row2 = mysqli_fetch_assoc($sql1);
+        $sql1 = $con ->query($query1);
+        $row2 = $sql1 ->fetch_assoc();
         $fID = intval($row2['food_id'])+1;
 
         $insert="INSERT INTO food(food_id, food_name, author, prep_time, cook_time, servings, video_link, proced, nutri_info, likes) 
                     VALUES ('$fID','$recName' ,'$email', '$timePrep', '$timeCook', '$serveSize', '$ytlink', '$procedure', '$nutriValue', '0')";
 
         mysqli_query($con, $insert);
+        $_SESSION['max_id'] = $fID;
         header("location: feed.php");
     }
     if ($result = $con->query($query)){
@@ -207,7 +208,7 @@
                                     <div id="response"></div><br><br>
                                     <span class="ex">Example: 1 kg</span>
                                     <input type="text" placeholder="Amount" id="amt-Ing" name="search">
-                                    <a id="add-Ing" href="#category-btn">Add</a>
+                                    <button id="add-Ing" type="button">Add</button>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <span class="sayoheading">List of Ingredients:</span>
@@ -231,6 +232,7 @@
                                     <label for="ytlink"><span class="formlabel">Youtube Link Tutorial (Optional): (Right-click video and choose "Copy embed code")</span></label>
                                     <textarea class="form-control" rows="1" name="ytlink"></textarea>
                                   </div>
+                                  <input type="checkbox" name="checkbox" id="checkbox"><span>Please be sure of legitimacy, any form of misinformation will result to account termination.</span><br>
                                 <button type="submit" class="btn croppie-upload" id="postbtn" name="btnPost"><span class="posttxt">Post your Recipe</span></button>
                               </form>
                         </div>
@@ -258,7 +260,7 @@ $(document).on('click', 'a.dropdown-item', function () {
     var category = $(this).text();
     $('#Ing-categ').html(category);
 });
-$(document).on('click', 'a#add-Ing', function () {
+$(document).on('click', 'button#add-Ing', function () {
     var category = $('h5#Ing-categ').text();
     if(category.length == 4){
         cl_categ = 'meat';
@@ -387,7 +389,13 @@ var croppieDemo = $('#croppie-demo').croppie({
                 });
             });
         });
-$("#postbtn").click(function(){
+$("#checkbox").change(function() {
+    if (this.checked){
+    $('button#add-Ing').prop('disabled',true);
+    $('button#add-Ing').html('Cannot Add');
+    if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0){
+        $('button#postbtn').prop('disabled', false);
+    }
     var meatArray = [];var meatAmt = [];
     var seaArray = [];var seaAmt = [];
     var oilArray = [];var oilAmt = [];
@@ -664,16 +672,27 @@ $("#postbtn").click(function(){
             //alert(data);
         }    
      });
+    }
+    else{
+        $.ajax({ 
+        url: "feed_files/delete.php", 
+        type: "POST"
+     });
+     $('button#postbtn').prop('disabled', true);
+    $('button#add-Ing').prop('disabled',false);
+    $('button#add-Ing').html('Add');
+    }
  }); 
         $('button#postbtn').prop('disabled', true);
-        $('textarea').keyup(function(){
-        if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0){
+        $('textarea').keyup(function(){    
+        if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked')){
             $('button#postbtn').prop('disabled', false);
         }
         else{
             $('button#postbtn').prop('disabled', true);
         }
     });
+
 
 </script>
 
