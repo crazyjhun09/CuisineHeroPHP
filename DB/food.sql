@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 13, 2021 at 08:58 PM
+-- Generation Time: Jun 14, 2021 at 08:36 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `bake` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `condi` (
   `condi_amt` varchar(30) NOT NULL,
   `food_id` int(6) NOT NULL,
   PRIMARY KEY (`condi_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `condi`
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `dairy` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `dessert` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `fish` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`fish_id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `food` (
   `likes` int(10) NOT NULL,
   `regdate` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `food`
@@ -251,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `fruit` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `ingredients_all` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `ing_name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ingredients_all`
@@ -290,13 +290,9 @@ INSERT INTO `ingredients_all` (`id`, `ing_name`) VALUES
 (20, 'Chicken'),
 (21, 'Tofu'),
 (22, 'Shrimp'),
-(34, 'Pepper'),
-(35, 'Pork'),
-(36, 'Beef'),
-(37, 'Chicken'),
-(38, 'Tofu'),
-(39, 'Shrimp'),
-(40, 'Adobo');
+(56, 'Liempo'),
+(55, 'Mango'),
+(53, 'Luncheon Meat');
 
 -- --------------------------------------------------------
 
@@ -321,8 +317,7 @@ INSERT INTO `like_log` (`id`, `email`, `likes`, `food_id`) VALUES
 (153, 'cuisinehero@gg.com', 1, 1),
 (159, 'factorjun0309@gmail.com', 1, 2),
 (158, 'factorjun0309@gmail.com', 1, 1),
-(160, 'a@g.com', 1, 2),
-(162, 'factorjun0309@gmail.com', 1, 3);
+(160, 'a@g.com', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -337,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `meat` (
   `meat_amt` varchar(30) NOT NULL,
   `food_id` int(6) NOT NULL,
   PRIMARY KEY (`meat_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `meat`
@@ -363,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `nuts` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -379,7 +374,7 @@ CREATE TABLE IF NOT EXISTS `oil` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -394,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `recipe_images` (
   `food_id` int(11) NOT NULL,
   `author` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recipe_images`
@@ -418,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `soup` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -434,7 +429,7 @@ CREATE TABLE IF NOT EXISTS `spice` (
   `food_id` int(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `food_id` (`food_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -449,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `veggies` (
   `veggies_amt` varchar(30) NOT NULL,
   `food_id` int(6) NOT NULL,
   PRIMARY KEY (`veggies_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `veggies`
