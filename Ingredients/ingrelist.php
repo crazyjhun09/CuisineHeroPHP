@@ -269,13 +269,13 @@ if($result = $con->query($queryc)){
   $row = $result->fetch_assoc();
   $vid_link = $row["video_link"];
   echo $vid_link;
-  echo '</div></div><div class="col-12 col-lg-5 recommended"><h2 class="Ingredient-Title font-weight-bold">You might also like...</h2>
+  echo '</div></div>';/*<div class="col-12 col-lg-5 recommended"><h2 class="Ingredient-Title font-weight-bold">You might also like...</h2>
         <div class="container-fluid">
         <div class="row bottomrow">';
   echo '<div class="col-12 col-md-3 card">
         <div class="card-body">Content</div>
         <div class="card-footer">Footer</div>
-        </div></div></div></div></div></div>';//Dito ung suggested recipes
+        </div></div></div></div></div></div>';//Dito ung suggested recipes*/
 }
 ?>
 </body>
