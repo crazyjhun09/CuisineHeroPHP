@@ -1,4 +1,4 @@
-	<?php
+<?php
 include '../DB/cred.php';
 
 		$con = mysqli_connect($server,$username,$password,$dbname);
@@ -11,7 +11,19 @@ include '../DB/cred.php';
 				LEFT OUTER JOIN veggies ON veggies.food_id = food.food_id
 				LEFT OUTER JOIN meat ON meat.food_id = veggies.food_id
 				LEFT OUTER JOIN condi ON condi.food_id = meat.food_id
-				HAVING veggies_name IN ($ings) OR meat_name IN ($ings) OR condi_name IN ($ings)"); 
+				LEFT OUTER JOIN bake ON bake.food_id = condi.food_id
+				LEFT OUTER JOIN dairy ON dairy.food_id = bake.food_id
+				LEFT OUTER JOIN dessert ON dessert.food_id = dairy.food_id
+				LEFT OUTER JOIN fish ON fish.food_id = dessert.food_id
+				LEFT OUTER JOIN fruit ON fruit.food_id = fish.food_id
+				LEFT OUTER JOIN nuts ON nuts.food_id = fruit.food_id
+				LEFT OUTER JOIN oil ON oil.food_id = nuts.food_id
+				LEFT OUTER JOIN soup ON soup.food_id = oil.food_id
+				LEFT OUTER JOIN spice ON spice.food_id = soup.food_id
+				HAVING veggies_name IN ($ings) OR meat_name IN ($ings) OR condi_name IN ($ings) OR
+						bake_name IN ($ings) OR dairy_name IN ($ings) OR dessert_name IN ($ings) OR
+						fish_name IN ($ings) OR fruit_name IN ($ings) OR nuts_name IN ($ings) OR
+						oil_name IN ($ings) OR soup_name IN ($ings) OR spice_name IN ($ings)"); 
 		
 
       	if($sql->num_rows > 0){

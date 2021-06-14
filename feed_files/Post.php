@@ -8,7 +8,6 @@ if ($result = $con->query($query)){
 while($row = $result->fetch_assoc()){
     $food_id = $row['food_id'];
     $queryfood = "SELECT * FROM food WHERE food_id='$food_id'";
-    $queryImg = "SELECT * FROM recipe_images WHERE food_id='$food_id'";
     /*$queryliked = "SELECT * FROM like_log WHERE food_id='$food_id' AND email='$email'";*/
     $result1 = $con->query($queryfood);
         while($row1 = $result1->fetch_array()){
@@ -31,6 +30,7 @@ while($row = $result->fetch_assoc()){
             </div></a>
             <a href="javascript:void(0)" class="link" var="'.$row['food_id'].'">
             <div class="foodpic">';
+            $queryImg = "SELECT * FROM recipe_images WHERE food_id=".$row['food_id']."";
             $resultImg = $con->query($queryImg);
             $rowImg = $resultImg -> fetch_assoc();
             echo '<img class="img-fluid" src="Ingredients/Images/'.$rowImg['food_img'].'">
