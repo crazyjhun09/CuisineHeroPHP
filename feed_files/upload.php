@@ -10,7 +10,7 @@ $data = $_POST['image'];
 $query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
 $sql1 = mysqli_query($db, $query1);
 $row2 = mysqli_fetch_assoc($sql1);
-$fID = intval($row2['food_id'])+1;
+$fID = intval($row2['food_id']);
 
 list($type, $data) = explode(';', $data);
 list(, $data) = explode(',', $data);

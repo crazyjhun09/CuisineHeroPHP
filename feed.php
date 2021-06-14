@@ -27,6 +27,30 @@
     if ($result = $con->query($query)){
         $row = mysqli_fetch_array($result);
 ?>
+<?php //Ingredients Name
+	if (isset($_POST['search'])) {
+		$response = "";
+            $connection = new mysqli($server,$username,$password,$dbname);
+		$q = $connection->real_escape_string($_POST['q']);
+
+		$sql = $connection->query("SELECT * FROM ingredients_all
+				WHERE ing_name LIKE '%$q%'");
+
+		if ($sql->num_rows > 0) {
+			$response = "<ul>";
+			$prevIng = false;
+			while ($data = $sql->fetch_assoc()){
+				$ingName = $data['ing_name'];
+				if($prevIng == $ingName){$ingName = ' ';}
+            	else{$response .= "<li class='ing-list'>" .$ingName. "</li>";}
+            	$prevIng = $data['ing_name'];
+			}
+			$response .= "</ul>";
+		}
+
+		exit($response);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <title>Feed - CuisineHero</title>
@@ -103,7 +127,7 @@
                                             <!--username-->
                                         </div>
                                         <div class="prfdata">
-                                            <h5 class="buddycount">Following: <span><?php echo $row['followno'];?><!--bilang ng friends--></span> <br> <br>  Recipe:<span> <?php echo $row['recpno'];?><!--bilang ng friends--></span></h5> <!--bilang ng friends-->
+                                            <h5 class="buddycount">Followers: <span><?php echo $row['followno'];?><!--bilang ng friends--></span> <br> <br>  Recipe:<span> <?php echo $row['recpno'];?><!--bilang ng friends--></span></h5> <!--bilang ng friends-->
                                         </div>
                                         <a href="Profile/profile.php" class="btn" role="button" id="profbtn"><span id="prftxt">Profile</span></a>
                                     </div>
@@ -178,9 +202,10 @@
                                         <a class="dropdown-item" href="#category-btn">Baking & Grains</a>
                                     </div>
                                     </div>
-                                    <input type="text" placeholder="Name of Ingredient" id="name-Ing"><br><br>
+                                    <input type="text" placeholder="Name of Ingredient" id="name-Ing">
+                                    <div id="response"></div><br><br>
                                     <span class="ex">Example: 1 kg</span>
-                                    <input type="text" placeholder="Amount" id="amt-Ing">
+                                    <input type="text" placeholder="Amount" id="amt-Ing" name="search">
                                     <a id="add-Ing" href="#category-btn">Add</a>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -290,6 +315,36 @@ $(document).on('click', 'a#add-Ing', function () {
   $(this).closest('sayo').remove();
 });
 
+});
+$(document).ready(function () {
+   $("#name-Ing").keyup(function () {
+       var query = $("#name-Ing").val();
+
+       if (query.length > 0) {
+          $.ajax(
+                {
+                 url: 'feed.php',
+                  method: 'POST',
+                  data: {
+                       search: 1,
+                       q: query
+                  },
+                  success: function (data) {
+                     $("#response").html(data);
+                 },
+                 dataType: 'text'
+             }
+         );
+     }
+     else{
+          $("#response").html("");
+      }
+  });
+  $(document).on('click', 'li.ing-list', function () {
+                    var recipe = $(this).text();
+                        $('#name-Ing').val(recipe);
+                        $('#response').html("");
+    });
 });
 
 $("#postbtn").click(function(){

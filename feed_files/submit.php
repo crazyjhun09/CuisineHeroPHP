@@ -18,6 +18,12 @@
 
 		$categ=$_POST["categ"];
 
+		$sql2="SELECT * FROM ingredients_all WHERE ing_name ='$ings'";
+		$result1 = $con -> query($sql2);
+		if($result1-> num_rows == 0){
+			$sqlInsert = "INSERT INTO ingredients_all (ing_name) VALUE ('$ings')";
+			mysqli_query($con,$sqlInsert);
+		}
 		/*$sql="SELECT * FROM food 
 				LEFT OUTER JOIN veggies ON veggies.food_id = food.food_id
 				LEFT OUTER JOIN meat ON meat.food_id = veggies.food_id
@@ -27,7 +33,7 @@
 		$sql="INSERT INTO ".$categ."(".$categ."_name, ".$categ."_amt, food_id) 
                     VALUES ('$ings', '$amts', '$fID')";
 		
-		$result = mysqli_query($con,$sql);
+		mysqli_query($con,$sql);
       	/*if($sql->num_rows > 0){
       	$prevID = false;
         	while($row=$sql->fetch_assoc()){	

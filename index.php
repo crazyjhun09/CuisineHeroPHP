@@ -33,7 +33,7 @@
                         <a class="nav-link" href="Search/search.php">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                 </ul> 
         </div>

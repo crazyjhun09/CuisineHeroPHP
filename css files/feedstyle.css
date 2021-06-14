@@ -368,6 +368,29 @@ img[src="Ingredients/like.png"]{
     border-radius: 20px;
     overflow: hidden;
 }
+#response{
+    margin-top: 10px;
+    margin-left:50px;
+    width: 325px;
+    background-color: rgba(20, 190, 125, 0.288);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    font-family: 'Krub';
+    overflow: hidden;
+    position: absolute;
+    left: 60px;
+}
+#response ul li{ /*DITO ung search results*/ 
+    text-indent: 20px;
+    list-style-type: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#response ul li:hover{
+    background-color: black;
+    color:white;
+}
 .dropdown-menu a:hover{
     background-color: black;
     color: white;

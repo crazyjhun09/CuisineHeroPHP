@@ -31,7 +31,7 @@
                         <a class="nav-link d-block d-sm-block d-md-none" href="#">CuisineHero</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Feed" href="feed.php" data-toggle="modal" data-target="#Login">Feed</a>
+                        <a class="nav-link" id="Feed" href="feed.php">Feed</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Search\search.php">Search</a>
