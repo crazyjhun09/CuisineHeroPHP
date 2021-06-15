@@ -2,12 +2,8 @@
 	session_start();
 	include '../DB/cred.php';
 		$con = mysqli_connect($server,$username,$password,$dbname);
-		
-			$query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
-			$sql1 = $con ->query($query1);
-			$row2 = $sql1 ->fetch_assoc();
-			$fID = intval($row2['food_id'])+1;
-			$_SESSION['max_id'] = $fID;
+
+		$fID = isset($_SESSION['max_id'])? $_SESSION['max_id'] : null;
 		
 		$c=1;
 		$ingsArray=$_POST["ingArray"];
@@ -51,6 +47,7 @@
 
 			if($result1-> num_rows == 0){
 				$sqlInsert = "INSERT INTO ingredients_all (ing_name) VALUE ('$ings')";
+				mysqli_query($con,$sqlInsert);
 			}
 		}
 ?>

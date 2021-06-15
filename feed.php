@@ -5,27 +5,6 @@
     $email = isset($_SESSION['email'])? $_SESSION['email'] : null;
     $con = mysqli_connect($server,$username,$password,$dbname);
     $query = "SELECT * FROM acc WHERE email = '$email'";
-    if(isset($_POST['btnPost'])){
-        $recName = $_POST['recname'];
-        $timePrep = $_POST['preptime'];
-        $timeCook = $_POST['cooktime'];
-        $serveSize = $_POST['serve'];
-        $procedure = nl2br($_POST['proce']);
-        $nutriValue = nl2br($_POST['nutrval']);
-        $ytlink = $_POST['ytlink'];
-
-        $query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
-        $sql1 = $con ->query($query1);
-        $row2 = $sql1 ->fetch_assoc();
-        $fID = intval($row2['food_id'])+1;
-
-        $insert="INSERT INTO food(food_id, food_name, author, prep_time, cook_time, servings, video_link, proced, nutri_info, likes) 
-                    VALUES ('$fID','$recName' ,'$email', '$timePrep', '$timeCook', '$serveSize', '$ytlink', '$procedure', '$nutriValue', '0')";
-
-        mysqli_query($con, $insert);
-        $_SESSION['max_id'] = $fID;
-        header("location: feed.php");
-    }
     if ($result = $con->query($query)){
         $row = mysqli_fetch_array($result);
 ?>
@@ -226,11 +205,11 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="nutri"><span class="formlabel">Nutritional Value (Optional):</span></label>
-                                    <textarea class="form-control" rows="5" name="nutrval"></textarea>
+                                    <textarea class="form-control" rows="5" name="nutrval" id="nutrval"></textarea>
                                   </div>
                                   <div class="form-group">
                                     <label for="ytlink"><span class="formlabel">Youtube Link Tutorial (Optional): (Right-click video and choose "Copy embed code")</span></label>
-                                    <textarea class="form-control" rows="1" name="ytlink"></textarea>
+                                    <textarea class="form-control" rows="1" name="ytlink" id="ytlink"></textarea>
                                   </div>
                                   <input type="checkbox" name="checkbox" id="checkbox"><span>Please be sure of legitimacy, any form of misinformation will result to account termination.</span><br>
                                 <button type="submit" class="btn croppie-upload" id="postbtn" name="btnPost"><span class="posttxt">Post your Recipe</span></button>
@@ -389,13 +368,41 @@ var croppieDemo = $('#croppie-demo').croppie({
                 });
             });
         });
-$("#checkbox").change(function() {
+    $("#checkbox").change(function() {
     if (this.checked){
+        var recname = $("#recname").val();
+        var cooktime = $("#cooktime").val();
+        var preptime = $("#preptime").val();
+        var serve = $("#serve").val();
+        var proce = $("#proce").val();
+        var nutrval = $("#nutrval").val();
+        var ytlink = $("#ytlink").val();
+
+        $.ajax({ 
+        url: "feed_files/foodtable.php", 
+        type: "POST", 
+        data: { 'recname' : recname, 'cooktime':cooktime, 'preptime' : preptime, "serve":serve, "proce":proce, "nutrval":nutrval, "ytlink":ytlink}, 
+        success: function(data) {   
+            alert(data);
+        }    
+     });
+    
     $('button#add-Ing').prop('disabled',true);
     $('button#add-Ing').html('Cannot Add');
-    if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0){
-        $('button#postbtn').prop('disabled', false);
     }
+    else{
+        $.ajax({ 
+        url: "feed_files/delete.php", 
+        type: "POST"
+     });
+     $('button#postbtn').prop('disabled', true);
+    $('button#add-Ing').prop('disabled',false);
+    $('button#add-Ing').html('Add');
+    }
+});
+
+
+$("button#postbtn").on('click',function() {
     var meatArray = [];var meatAmt = [];
     var seaArray = [];var seaAmt = [];
     var oilArray = [];var oilAmt = [];
@@ -427,7 +434,7 @@ $("#checkbox").change(function() {
         type: "POST", 
         data: { 'ingArray' : meatArray, 'categ' : "meat", 'ingAmt' : meatAmt}, 
         success: function(data) {   
-            //alert(data);
+            alert(data);
         }    
      });
 
@@ -672,17 +679,7 @@ $("#checkbox").change(function() {
             //alert(data);
         }    
      });
-    }
-    else{
-        $.ajax({ 
-        url: "feed_files/delete.php", 
-        type: "POST"
-     });
-     $('button#postbtn').prop('disabled', true);
-    $('button#add-Ing').prop('disabled',false);
-    $('button#add-Ing').html('Add');
-    }
- }); 
+    });
         $('button#postbtn').prop('disabled', true);
         $('textarea').keyup(function(){    
         if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked')){
@@ -704,27 +701,3 @@ else {
     exit();
 }
 ?>
-<!--</?php
-if(isset($_SESSION['rel'])){
-  echo "<script>
-  $('#Comment').modal('show');
-  </script>";
-  unset($_SESSION['rel']);
-}
-
-?>
-<script>
-$('.like-btn').click(function(){
-  if($('.like-btn').val() == 1){
-    $('.like-btn').removeClass('liked');
-    $('.like-btn').val(0);
-    $.post('Ingredients/likebtn.php', {liked: '-1'});
-  }
-  else
-  {
-    $('.like-btn').addClass('liked');
-    $('.like-btn').val(1);
-    $.post('Ingredients/likebtn.php', {liked: '1'});
-  }
-});
-</script>
