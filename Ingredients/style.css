@@ -115,6 +115,7 @@ div div div a.dpup:hover{
     position: relative;
     top: 40px;
     margin-right: 30px;
+    margin-bottom: 50px;
 }
 .foodImg{
     height: max-content;
@@ -220,15 +221,12 @@ button.del-com div{
 .recipedetails{
     font-family: 'Raleway';
 }
-
-.recommended h2{
-    font-family: 'Krub';
-}
 .vidcontainer{
     position: relative;
     top: -300px;
     display: flex;
     justify-content: center;
+    
 }
 .ytvid{
    height: 400px;
@@ -247,19 +245,12 @@ iframe{
     .vidcontainer{
         top: -1000px;
     }
-    .recommended{
-        top: -500px;
-    }
 }
 @media screen and (max-width: 768px) {
-    .recommended{
-        top: 0px;
-        margin-top: 200px;
-        margin-bottom: 200px;
-    }
     .vidcontainer{
         position: relative;
         top: 100px;
+        margin-bottom: 100px;
     }
     .spacing{
         margin-top: 0px;
