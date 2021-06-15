@@ -30,7 +30,7 @@
 		$response1 = "<ul class='nores font-weight-bold'>No Recipe found :( <br>
         <img src='empty-cart.png'></ul>";
 
-        $connection1 = new mysqli($server,$username,$password,$dbname);
+		$connection1 = new mysqli($server,$username,$password,$dbname);
 		$q1 = $connection1->real_escape_string($_POST['q1']);
 
 		$sql1 = $connection1->query("SELECT * FROM food

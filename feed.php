@@ -169,18 +169,12 @@
                                         Categories <!--Dito ung Ingredients-->
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#category-btn">Meat</a>
-                                        <a class="dropdown-item" href="#category-btn">Fish/Seafood</a>
+                                        <a class="dropdown-item" href="#category-btn">Meat/Seafood</a>
                                         <a class="dropdown-item" href="#category-btn">Oil/Liquid</a>
                                         <a class="dropdown-item" href="#category-btn">Vegetables</a>
                                         <a class="dropdown-item" href="#category-btn">Fruits</a>
                                         <a class="dropdown-item" href="#category-btn">Spice/Seasonings/Sweeteners</a>
-                                        <a class="dropdown-item" href="#category-btn">Dairy</a>
-                                        <a class="dropdown-item" href="#category-btn">Dessert/Snacks</a>
                                         <a class="dropdown-item" href="#category-btn">Condiments</a>
-                                        <a class="dropdown-item" href="#category-btn">Soup/Sauces</a>
-                                        <a class="dropdown-item" href="#category-btn">Nuts/Legumes</a>
-                                        <a class="dropdown-item" href="#category-btn">Baking & Grains</a>
                                     </div>
                                     </div>
                                     <input type="text" placeholder="Name of Ingredient" id="name-Ing">
@@ -241,16 +235,8 @@ $(document).on('click', 'a.dropdown-item', function () {
 });
 $(document).on('click', 'button#add-Ing', function () {
     var category = $('h5#Ing-categ').text();
-    if(category.length == 4){
+    if(category.length == 12){
         cl_categ = 'meat';
-    }
-    else if(category.length == 12){
-        if (category == 'Fish/Seafood'){
-            cl_categ = 'fish';
-        }
-        else{
-            cl_categ = 'nuts';
-        }
     }
     else if (category.length == 10){
         if (category == 'Oil/Liquid'){
@@ -268,18 +254,6 @@ $(document).on('click', 'button#add-Ing', function () {
     }
     else if (category.length == 27){
         cl_categ ='spice';
-    }
-    else if (category.length == 5){
-        cl_categ ='dairy';
-    }
-    else if (category.length == 14){
-        cl_categ = 'dessert';
-    }
-    else if (category.length == 11){
-        cl_categ = 'soup';
-    }
-    else if (category.length == 15){
-        cl_categ = 'bake';
     }
     else{
         cl_categ = null;
@@ -370,6 +344,12 @@ var croppieDemo = $('#croppie-demo').croppie({
         });
     $("#checkbox").change(function() {
     if (this.checked){
+        if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked')){
+            $('button#postbtn').prop('disabled', false);
+        }
+        else{
+            $('button#postbtn').prop('disabled', true);
+        }
         var recname = $("#recname").val();
         var cooktime = $("#cooktime").val();
         var preptime = $("#preptime").val();
@@ -400,21 +380,21 @@ var croppieDemo = $('#croppie-demo').croppie({
     $('button#add-Ing').html('Add');
     }
 });
+$(window).on('beforeunload', function(){
+        $.ajax({ 
+        url: "feed_files/delete.php", 
+        type: "POST"
+});
+});
 
 
 $("button#postbtn").on('click',function() {
     var meatArray = [];var meatAmt = [];
-    var seaArray = [];var seaAmt = [];
     var oilArray = [];var oilAmt = [];
     var vegArray = [];var vegAmt = [];
     var fruitArray = [];var fruitAmt = [];
     var spiceArray = [];var spiceAmt = [];
-    var dairyArray = [];var dairyAmt = [];
-    var desArray = [];var desAmt = [];
     var condiArray = [];var condiAmt = [];
-    var soupArray = [];var soupAmt = [];
-    var nutArray = [];var nutAmt = [];
-    var bakeArray = [];var bakeAmt = [];
 
     $("sayo.ingrds").each(function() {
         var ingredients = [];
@@ -438,27 +418,6 @@ $("button#postbtn").on('click',function() {
         }    
      });
 
-    $("sayo.ingrds").each(function() {
-        var ingredients = [];
-        var amounts = [];
-        var ingData = $(this).find('span.fish');
-        var amtData = $(this).find('span.amt-fish');
-        if (ingData.length > 0 && amtData.length > 0) {
-             ingData.each(function() { ingredients.push($(this).text()); });
-             amtData.each(function() { amounts.push($(this).text()); });
-             seaArray.push(ingredients);
-             seaAmt.push(amounts);
-        }
-     });
-    
-    $.ajax({ 
-        url: "feed_files/submit.php", 
-        type: "POST", 
-        data: { 'ingArray' : seaArray, 'categ':"fish", 'ingAmt' : seaAmt}, 
-        success: function(data) {   
-            //alert(data);
-        }    
-     });
 
     $("sayo.ingrds").each(function() {
         var ingredients = [];
@@ -551,50 +510,6 @@ $("button#postbtn").on('click',function() {
     $("sayo.ingrds").each(function() {
         var ingredients = [];
         var amounts = [];
-        var ingData = $(this).find('span.dairy');
-        var amtData = $(this).find('span.amt-dairy');
-        if (ingData.length > 0 && amtData.length > 0) {
-             ingData.each(function() { ingredients.push($(this).text()); });
-             amtData.each(function() { amounts.push($(this).text()); });
-             dairyArray.push(ingredients);
-             dairyAmt.push(amounts);
-        }
-     });
-    
-    $.ajax({ 
-        url: "feed_files/submit.php", 
-        type: "POST", 
-        data: { 'ingArray' : dairyArray, 'categ':"dairy", 'ingAmt' : dairyAmt}, 
-        success: function(data) {   
-            //alert(data);
-        }    
-     });
-
-    $("sayo.ingrds").each(function() {
-        var ingredients = [];
-        var amounts = [];
-        var ingData = $(this).find('span.dessert');
-        var amtData = $(this).find('span.amt-dessert');
-        if (ingData.length > 0 && amtData.length > 0) {
-             ingData.each(function() { ingredients.push($(this).text()); });
-             amtData.each(function() { amounts.push($(this).text()); });
-             desArray.push(ingredients);
-             desAmt.push(amounts);
-        }
-     });
-    
-    $.ajax({ 
-        url: "feed_files/submit.php", 
-        type: "POST", 
-        data: { 'ingArray' : desArray, 'categ':"dessert", 'ingAmt' : desAmt}, 
-        success: function(data) {   
-            //alert(data);
-        }    
-     });
-
-    $("sayo.ingrds").each(function() {
-        var ingredients = [];
-        var amounts = [];
         var ingData = $(this).find('span.condi');
         var amtData = $(this).find('span.amt-condi');
         if (ingData.length > 0 && amtData.length > 0) {
@@ -613,76 +528,10 @@ $("button#postbtn").on('click',function() {
             //alert(data);
         }    
      });   
-
-    $("sayo.ingrds").each(function() {
-        var ingredients = [];
-        var amounts = [];
-        var ingData = $(this).find('span.soup');
-        var amtData = $(this).find('span.amt-soup');
-        if (ingData.length > 0 && amtData.length > 0) {
-             ingData.each(function() { ingredients.push($(this).text()); });
-             amtData.each(function() { amounts.push($(this).text()); });
-             soupArray.push(ingredients);
-             soupAmt.push(amounts);
-        }
-     });
-    
-    $.ajax({ 
-        url: "feed_files/submit.php", 
-        type: "POST", 
-        data: { 'ingArray' : soupArray, 'categ':"soup", 'ingAmt' : soupAmt}, 
-        success: function(data) {   
-            //alert(data);
-        }    
-     });
-
-    $("sayo.ingrds").each(function() {
-        var ingredients = [];
-        var amounts = [];
-        var ingData = $(this).find('span.nuts');
-        var amtData = $(this).find('span.amt-nuts');
-        if (ingData.length > 0 && amtData.length > 0) {
-             ingData.each(function() { ingredients.push($(this).text()); });
-             amtData.each(function() { amounts.push($(this).text()); });
-             nutArray.push(ingredients);
-             nutAmt.push(amounts);
-        }
-     });
-    
-    $.ajax({ 
-        url: "feed_files/submit.php", 
-        type: "POST", 
-        data: { 'ingArray' : nutArray, 'categ':"nuts", 'ingAmt' : nutAmt}, 
-        success: function(data) {   
-            //alert(data);
-        }    
-     });    
-
-    $("sayo.ingrds").each(function() {
-        var ingredients = [];
-        var amounts = [];
-        var ingData = $(this).find('span.bake');
-        var amtData = $(this).find('span.amt-bake');
-        if (ingData.length > 0 && amtData.length > 0) {
-             ingData.each(function() { ingredients.push($(this).text()); });
-             amtData.each(function() { amounts.push($(this).text()); });
-             bakeArray.push(ingredients);
-             bakeAmt.push(amounts);
-        }
-     });
-    
-    $.ajax({ 
-        url: "feed_files/submit.php", 
-        type: "POST", 
-        data: { 'ingArray' : bakeArray, 'categ':"bake", 'ingAmt' : bakeAmt}, 
-        success: function(data) {   
-            //alert(data);
-        }    
-     });
     });
         $('button#postbtn').prop('disabled', true);
         $('textarea').keyup(function(){    
-        if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked')){
+        if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked') && $("#croppie-input").val().length>0){
             $('button#postbtn').prop('disabled', false);
         }
         else{

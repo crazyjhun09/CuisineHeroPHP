@@ -1,5 +1,6 @@
 <?php
     include '../DB/cred.php';
+    session_start();
     $con = mysqli_connect($server,$username,$password,$dbname);
 
     $fID = isset($_SESSION['max_id'])? $_SESSION['max_id'] : null;
