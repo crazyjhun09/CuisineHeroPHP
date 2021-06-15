@@ -5,14 +5,13 @@
     $email = isset($_SESSION['email'])? $_SESSION['email'] : null;
     $con = mysqli_connect($server,$username,$password,$dbname);
     $query = "SELECT * FROM acc WHERE email = '$email'";
-    include_once 'feed_files/fid.php';
     if(isset($_POST['btnPost'])){
         $recName = $_POST['recname'];
         $timePrep = $_POST['preptime'];
         $timeCook = $_POST['cooktime'];
         $serveSize = $_POST['serve'];
-        $procedure = $_POST['proce'];
-        $nutriValue = $_POST['nutrval'];
+        $procedure = nl2br($_POST['proce']);
+        $nutriValue = nl2br($_POST['nutrval']);
         $ytlink = $_POST['ytlink'];
 
         $query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
@@ -61,7 +60,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
-    <link rel="shortcut icon" href="images/logo white.png">
+    <link rel="shortcut icon" href="Images/logo white.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

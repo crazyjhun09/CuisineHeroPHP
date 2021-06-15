@@ -17,7 +17,7 @@
 <header>
     <nav class="navbar navbar-expand-md" id="banner">
         <div class="container-fluid" id="banner1">
-            <a class="navbar-brand" href="C:\Users\User\Documents\GitHub\CuisineHero\index.html"><img src="Images\logo white.png"></a>
+            <a class="navbar-brand" href="#"><img src="Images\logo white.png"></a>
             <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <img src="Images\burjer.png" width="30" height="20">
             </button>
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="Search/search.php">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                 </ul> 
         </div>
@@ -45,7 +45,7 @@
     <div class="video-container">
         <div class="overlay"></div>
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-            <source src="videos/video.mp4" type="video/mp4">
+            <source src="https://stream.mux.com/YooBB1uTQp8lHKATUD6G8o6ZGqPUzjxd/high.mp4?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InQ5UHZucm9ZY0hQNjhYSmlRQnRHTEVVSkVSSXJ0UXhKIn0.eyJleHAiOjE2MjM3MTQ2NzYsImF1ZCI6InYiLCJzdWIiOiJZb29CQjF1VFFwOGxIS0FUVUQ2RzhvNlpHcVBVemp4ZCJ9.uVISqOQj--YG6qgLv8PRttkxR8pzJhkZuLlrtip0OGkgY3FS_U6Ljk8jQdtQhgk8b_aYg37Sf1RqZVMxoSaB_akPx3futYvHqgGCGdwQ_Dqq5CoPcrn13k_9FNBB8yCMDGucyieMlRi6vjt0-fLkw_ssSWgtLYMvrZ2Rq2X411ksSaiEkiDEk_xoD7Zvjsd1j-gS9yQQjO3XfsrdBtYLO6aLvzvnSfLKmSQS4Mk7RNdEpkDbkmmNkuD0F96sRpmrXI0DAUomxh-nZ_6GsbF8xRvpT3Dpe5JZywvUeTH2QaXicNiQGc0Yvs-kWS4VM1ArH3yw9SC--ohqBr9NAQtKlQ" type="video/mp4">
           </video>
           <div class="container-fluid h-100" id="landingtop">
             <div class="row" id="buffertop">
