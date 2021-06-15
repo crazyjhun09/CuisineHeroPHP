@@ -28,22 +28,6 @@
 			}
 			$response .= "</ul>";
 		}
-        if ($response) {
-            // successfully inserted into database
-            $response1["success"] = 1;
-            $response1["message"] = "New user successfully created.";
-        
-            // echoing JSON response
-            echo json_encode($response1);
-        } else {
-            // failed to insert row
-            $response1["success"] = 0;
-            $response1["message"] = 'Database error ' . mysqli_errno($con) . ' ' . mysqli_error($con);
-        
-            // echoing JSON response
-            echo json_encode($response1);
-        }
-
 		exit($response);
 	}
 ?>
