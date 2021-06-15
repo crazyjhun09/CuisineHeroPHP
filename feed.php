@@ -16,7 +16,7 @@
 
 		$sql = $connection->query("SELECT * FROM ingredients_all
 				WHERE ing_name LIKE '%$q%'");
-
+        
 		if ($sql->num_rows > 0) {
 			$response = "<ul>";
 			$prevIng = false;
@@ -28,6 +28,21 @@
 			}
 			$response .= "</ul>";
 		}
+        if ($response) {
+            // successfully inserted into database
+            $response1["success"] = 1;
+            $response1["message"] = "New user successfully created.";
+        
+            // echoing JSON response
+            echo json_encode($response1);
+        } else {
+            // failed to insert row
+            $response1["success"] = 0;
+            $response1["message"] = 'Database error ' . mysqli_errno($con) . ' ' . mysqli_error($con);
+        
+            // echoing JSON response
+            echo json_encode($response1);
+        }
 
 		exit($response);
 	}
@@ -138,7 +153,7 @@
                       <div class="row" id="sec3">
                         <div class="col text-center" id="formcol">
                             <h1>Share your own recipes!</h1>
-                            <form method="POST" action="feed.php" id="recp-form">
+                            <form method="POST" action="Profile/profile.php" id="recp-form">
                                 <div id="croppie-demo"></div>
                                 <label for="recimg"><span class="formlabel">Upload Recipe Picture</span></label><br>
                                 <input type="file" id="croppie-input" name="filename" class="text-center" required>
