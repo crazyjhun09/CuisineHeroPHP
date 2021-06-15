@@ -4,6 +4,7 @@ $email = isset($_SESSION['email'])? $_SESSION['email'] : null;
 
 $con = mysqli_connect($server,$username,$password,$dbname);
 $query = "SELECT * FROM food ORDER BY regdate Desc";
+$lim = 0;
 if ($result = $con->query($query)){
 while($row = $result->fetch_assoc()){
     $food_id = $row['food_id'];
@@ -11,6 +12,7 @@ while($row = $result->fetch_assoc()){
     /*$queryliked = "SELECT * FROM like_log WHERE food_id='$food_id' AND email='$email'";*/
     $result1 = $con->query($queryfood);
         while($row1 = $result1->fetch_array()){
+            if ($lim != 3){ $lim++;
             $email1 = $row1['author'];
             echo '<div class="card">
             <a href="javascript:void(0)" class="link1" var="'.$row1['author'].'">
@@ -51,6 +53,7 @@ while($row = $result->fetch_assoc()){
             </form>';
             }
         }
+    }
     }
 }
 
