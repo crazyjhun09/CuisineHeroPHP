@@ -176,10 +176,13 @@
                                         <a class="dropdown-item" href="#category-btn">Condiments</a>
                                     </div>
                                     </div>
-                                    <input type="text" placeholder="Name of Ingredient" id="name-Ing">
-                                    <div id="response"></div><br><br>
-                                    <span class="ex">Example: 1 kg</span>
-                                    <input type="text" placeholder="Amount" id="amt-Ing" name="search">
+                                    <div class="nameofingredient text-center">
+                                        <input type="text" placeholder="Name of Ingredient" id="name-Ing">
+                                        <div id="response"></div>
+                                    </div><br>
+                                    
+                                    <input type="text" placeholder="Amount" id="amt-Ing" name="search"><br>
+                                    <span class="ex">Example: 1 kg</span><br>
                                     <button id="add-Ing" type="button">Add</button>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -204,8 +207,10 @@
                                     <label for="ytlink"><span class="formlabel">Youtube Link Tutorial (Optional): (Right-click video and choose "Copy embed code")</span></label>
                                     <textarea class="form-control" rows="1" name="ytlink" id="ytlink"></textarea>
                                   </div>
-                                  <input type="checkbox" name="checkbox" id="checkbox"><span>Please be sure of legitimacy, any form of misinformation will result to account termination.</span><br>
-                                <button type="submit" class="btn croppie-upload" id="postbtn" name="btnPost"><span class="posttxt">Post your Recipe</span></button>
+                                  <div class="d-flex justify-content-center">
+                                  <input type="checkbox" name="checkbox" id="checkbox"><span class="disclaimer">Please be sure of legitimacy, any form of misinformation will result to account termination.</span><br>
+                                  </div><br>
+                                  <button type="submit" class="btn croppie-upload" id="postbtn" name="btnPost"><span class="posttxt">Post your Recipe</span></button>
                               </form>
                         </div>
                         
@@ -261,7 +266,7 @@ $(document).on('click', 'button#add-Ing', function () {
     var ing = $('#name-Ing').val();
     var ing_amt = $('#amt-Ing').val();
     if(ing.length>0 && ing_amt.length>0 && cl_categ.length>0){
-        $('.app-Ings').append('<sayo class="ingrds"><button type="button" class="btn delbtn">Remove</button><span class ="col-md-4 col-12">'+category+'</span><span class ="categs col-md-3 col-12 '+cl_categ+'">'+ing+'</span><span class="col-md-3 col-12 amt-'+cl_categ+'">'+ing_amt+'</span></sayo>');
+        $('.app-Ings').append('<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'+category+'</span><span class ="categs col-md-3 col-12 '+cl_categ+'">'+ing+'</span><span class="col-md-3 col-12 amt-'+cl_categ+'">'+ing_amt+'</span></sayo>');
     }//Dito ung appending ingredients
     else {
         alert('Please fill-up the name of ingredient and the amount.');

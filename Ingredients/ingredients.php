@@ -48,13 +48,23 @@
 
 <body>
     <div></div>
+    <div class="container-fluid more d-md-none position-relative">
+        <div class="btn-group dropup">
+        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu">
+              <?php include 'qlikemobile.php'?>
+              <button class="dropdown-item dpup sharebtnmb">Share</button>
+              <button href="" class="dropdown-item dpup" data-toggle="modal" data-target="#Comment">Comment</button>
+          </div>
+      </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
           <div class="col-1 d-none d-md-block">
             <div class="container-fluid position-fixed icons">
               <div class="row">
                 <div class="col-12 ibtn" ><?php include 'qlike.php'?></div>
-                <div class="col-12  ibtn" ><button type="submit" class="btn"><img src="share.png"></button></div>
+                <div class="col-12  ibtn sharebtn" ><button type="submit" class="btn" data-toggle="modal" data-target="#share"><img src="share.png"></button></div>
                 <div class="col-12  ibtn" ><button type="submit" class="btn" data-toggle="modal" data-target="#Comment"><img src="comment.png"></button></div>
             </div></div>
           </div><br><br>
@@ -64,16 +74,7 @@
               </div>
             </div>
       </div>
-      <div class="container-fluid more d-md-none">
-        <div class="btn-group dropup">
-        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-          <div class="dropdown-menu">
-              <?php include 'qlikemobile.php'?>
-              <button href="" class="dropdown-item dpup">Share</button>
-              <button href="" class="dropdown-item dpup" data-toggle="modal" data-target="#Comment">Comment</button>
-          </div>
-      </div>
-    </div>
+      
 </body> <br><br><br><br>
 <div class="modal fade" id="Comment">
         <div class="modal-dialog modal-dialog-centered modal-md  modal-dialog-scrollable">
@@ -94,6 +95,26 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="share" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Share this recipe!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h5>Link of this recipe: <span id="sharemod" class="font-weight-bold"><span></h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default copybtnn" onclick="copyToClipboard()">Copy this link!</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
 <footer>
     <div class="footer col-12">
         <div class="row">
@@ -128,8 +149,38 @@
 </footer>
 </html>
 <script>
-  AOS.init();
+const shareButton = document.querySelector('.sharebtnmb');
+shareButton.addEventListener('click', event => {
+  if (navigator.share) { 
+   navigator.share({
+      title: 'Check out this Recipe!',
+      url: window.location.href,
+    }).then(() => {
+      console.log('Thanks for sharing!');
+    })
+    .catch(console.error);
+    } else {
+      //walang fallback, add na lang pag may time hHhHhhAHAHAHH
+    }
+});
+document.getElementById("sharemod").innerHTML = 
+window.location.href;
+
+function copyToClipboard(text) {
+var inputc = document.body.appendChild(document.createElement("input"));
+inputc.value = window.location.href;
+inputc.focus();
+inputc.select();
+document.execCommand('copy');
+inputc.parentNode.removeChild(inputc);
+alert("URL Copied.");
+}
+
 </script>
+<script>
+    AOS.init();
+</script>
+
 <?php
 if(isset($_SESSION['rel'])){
   echo "<script>

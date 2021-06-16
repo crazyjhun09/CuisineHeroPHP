@@ -50,11 +50,8 @@
 
 #picbanner{
     display: block;
-    margin: auto;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
 }
 .picban{
     position:absolute;
@@ -300,8 +297,8 @@ button.follow-btn div{
         width:auto;
     }
     .picban{
-        right: 5px;
-        width: 100%;
+        right: -15px;
+        width: inherit;
         left: -15px;
         box-sizing: content-box;
     }

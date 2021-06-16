@@ -95,8 +95,18 @@ a.navlink{
     position:relative;
     font-family:'Krub';
 }
+.dropdown-menu{
+    background-color: rgba(20, 190, 125, 0.24);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    transition: ease 0.2s;
+}
 .dropdown-menu a{
     font-family:'Krub';
+}
+.dropdown-menu a:active{
+    color: white;
+    background-color: black;
 }
 #searchquery{
     position: relative;
@@ -104,7 +114,6 @@ a.navlink{
 }
 #srchbtn{
     position: absolute;
-
     height: 50px;
     width: 50px;
     left: 360px;
@@ -182,13 +191,6 @@ div button.dpdown1 img{
     font-family:'Krub';
     margin-bottom:10px;
 }
-#smartsugg{
-    font-family: 'Raleway';
-
-}
-#smartsugg h2{
-    font-size: 40px;
-}
 .delbtn{
     font-size: 15px;
     border: solid black;
@@ -251,7 +253,6 @@ div button.dpdown1 img{
     margin-top:20px;
 }
 #response ul li{ /*DITO ung search results*/ 
-    text-indent: 20px;
     list-style-type: none;
     padding: 5px;
     cursor: pointer;
@@ -307,16 +308,31 @@ div button.dpdown1 img{
 .card a:hover{
     color: white;
 }
-
 #startsplash{
-    position: absolute;
+    position: fixed;
+    transform: translate(50%);
+    left: 50%;
     text-align: center;
-    transform: translate(50%, 20%);
     font-family:'Krub';
 }
 #startsplash img{
     width: auto;
     height: 300px;
+}
+@media (max-width: 768px) {
+    #startsplash{
+        position: relative;
+    transform: translate(-50%);
+    left: 50%;
+    }
+    #startsplash h1{
+        font-family:'Krub';
+        font-size: 20px;
+    }
+    #startsplash img{
+        width: auto;
+        height: 200px;
+   
 }
 ::-webkit-scrollbar-track
 {
