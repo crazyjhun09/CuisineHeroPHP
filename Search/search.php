@@ -1,9 +1,10 @@
 <?php //Ingredients Name
+           include '../DB/cred.php';
 	if (isset($_POST['search'])) {
 		$response = "<ul class='nores font-weight-bold'>No Ingredients found :( <br>
             <img src='empty-cart.png'>
             </ul>";
-            include '../DB/cred.php';
+ 
             $connection = new mysqli($server,$username,$password,$dbname);
 		$q = $connection->real_escape_string($_POST['q']);
 

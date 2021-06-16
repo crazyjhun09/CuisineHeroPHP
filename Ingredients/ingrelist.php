@@ -24,10 +24,10 @@ if ($result = $con->query($queryf)){ //Food Name
         echo '<div class="col-12 col-md-6 foodImg"><div class="Img-container" data-aos="fade-right"
         data-aos-offset="300"
         data-aos-easing="ease-in-sine">';
-        $queryImg = "SELECT * FROM recipe_images WHERE food_id='$food_id'";
+        $queryImg = "SELECT * FROM recipe_images WHERE food_id=".$food_id."";
         $resultImg = $con->query($queryImg);
         $rowImg = $resultImg -> fetch_assoc();
-        echo "<img class='img-fluid' id='foodImg'src='images/".$rowImg['food_img']."'>";
+        echo "<img class='img-fluid' id='foodImg'src='Images/".$rowImg['food_img']."'>";
         echo'</div>
         </div>
         <div class="col-12 col-md-5 adjust">
@@ -60,7 +60,7 @@ if ($result = $con->query($querym)){
     $row=$result->fetch_assoc();
     $check = $row['meat_name'];
       if(isset($check)){
-    echo '<h4 class="col-12 Indention-Ing font-weight-bold">Meats:</h4>';
+    echo '<h4 class="col-12 Indention-Ing font-weight-bold">Protein/Meat:</h4>';
     $result = $con->query($querym);
     while($row = $result->fetch_assoc()) {
       $meatname = $row["meat_name"];
@@ -138,7 +138,7 @@ if ($result = $con->query($queryss)){
     $row=$result->fetch_assoc();
     $check = $row['spice_name'];
       if(isset($check)){
-    echo '<h4 class="col-12 Indention-Ing font-weight-bold">Spices/Seasonings/Sweeteners:</h4>';
+    echo '<h4 class="col-12 Indention-Ing font-weight-bold">Spices/Seasonings:</h4>';
     $result = $con->query($queryss);
     while($row = $result->fetch_assoc()) {
       $meatname = $row["spice_name"];

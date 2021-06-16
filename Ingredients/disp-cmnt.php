@@ -15,7 +15,7 @@ if($result=$con->query($querycom)){
         <div class="dp"> <!--profile picture-->';
         if($result1=$con->query($queryacc)){
             while($row1=$result1->fetch_array()){
-                echo '<img src="../Profile/Images/'.$row1['dispic'].'">
+                echo '<img src="../Profile/images/'.$row1['dispic'].'">
                 </div> 
                 <div class="usrnm"> <!--username-->
                     <h4>'.$row1['firstname'].' '.$row1['lastname'].'</h4>';

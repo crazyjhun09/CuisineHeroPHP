@@ -91,17 +91,17 @@
                 </div>
                 <div class="tab-content">
                     <div id="recp" class="container-fluid tab-pane active">
-                      <div class="row">
+                      <div class="row d-flex justify-content-center">
                           <?php include 'recipe2.php'?>
                       </div>
                     </div>
                     <div id="fav" class="container-fluid tab-pane fade">
-                        <div class="row">
+                        <div class="row d-flex justify-content-center">
                         <?php include 'fav2.php'?>
                         </div>
                     </div>
                     <div id="fol" class="container tab-pane fade">
-                        <div class="row">
+                        <div class="row d-flex justify-content-center">
                           <?php include 'following-visit.php'?>
                         </div>
                     </div>

@@ -45,7 +45,7 @@
     <div class="video-container">
         <div class="overlay"></div>
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-            <source src="https://stream.mux.com/YooBB1uTQp8lHKATUD6G8o6ZGqPUzjxd/high.mp4?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InQ5UHZucm9ZY0hQNjhYSmlRQnRHTEVVSkVSSXJ0UXhKIn0.eyJleHAiOjE2MjM3MTQ2NzYsImF1ZCI6InYiLCJzdWIiOiJZb29CQjF1VFFwOGxIS0FUVUQ2RzhvNlpHcVBVemp4ZCJ9.uVISqOQj--YG6qgLv8PRttkxR8pzJhkZuLlrtip0OGkgY3FS_U6Ljk8jQdtQhgk8b_aYg37Sf1RqZVMxoSaB_akPx3futYvHqgGCGdwQ_Dqq5CoPcrn13k_9FNBB8yCMDGucyieMlRi6vjt0-fLkw_ssSWgtLYMvrZ2Rq2X411ksSaiEkiDEk_xoD7Zvjsd1j-gS9yQQjO3XfsrdBtYLO6aLvzvnSfLKmSQS4Mk7RNdEpkDbkmmNkuD0F96sRpmrXI0DAUomxh-nZ_6GsbF8xRvpT3Dpe5JZywvUeTH2QaXicNiQGc0Yvs-kWS4VM1ArH3yw9SC--ohqBr9NAQtKlQ" type="video/mp4">
+            <source src="https://cdn.videvo.net/videvo_files/video/free/2016-12/small_watermarked/FoodPack1_09_Videvo_preview.webm" type="video/mp4">
           </video>
           <div class="container-fluid h-100" id="landingtop">
             <div class="row" id="buffertop">
@@ -106,19 +106,19 @@
                 <div class="modal-body">
                     <form action="DB/SignUp.php" method="post" class="form-horizontal">
                         <div class="form-group control-label">
-                            <input type="text" name="firstname" placeholder="First Name" autocomplete="false" required>
+                            <input type="text" name="firstname" placeholder="First Name" autocomplete="false" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="text" name="lastname" placeholder="Last Name" autocomplete="false" required>
+                            <input type="text" name="lastname" placeholder="Last Name" autocomplete="false" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="email" name="email" placeholder="E-mail" autocomplete="false" required>
+                            <input type="email" name="email" placeholder="E-mail" autocomplete="false" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="password" name="password" id="pw1" placeholder="Password" autocomplete="false" required>
+                            <input type="password" name="password" id="pw1" placeholder="Password" autocomplete="false" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="password" id="pw2" placeholder="Confirm Password" autocomplete="false">
+                            <input type="password" id="pw2" placeholder="Confirm Password" autocomplete="false" maxlength="30">
                             <br><span id="match"></span><br>
                         </div>
                         <div id="tnctext">By Signing Up, You are agreeing with the site's <a href="#" data-toggle="modal" data-target="#TNC">Terms and Conditions</a></div>

@@ -48,7 +48,7 @@
 
 <body>
     <div></div>
-    <div class="container-fluid more d-md-none position-relative">
+        <div class="container-fluid more d-md-none position-relative">
         <div class="btn-group dropup">
         <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
           <div class="dropdown-menu">
@@ -64,7 +64,7 @@
             <div class="container-fluid position-fixed icons">
               <div class="row">
                 <div class="col-12 ibtn" ><?php include 'qlike.php'?></div>
-                <div class="col-12  ibtn sharebtn" ><button type="submit" class="btn" data-toggle="modal" data-target="#share"><img src="share.png"></button></div>
+                                <div class="col-12  ibtn sharebtn" ><button type="submit" class="btn" data-toggle="modal" data-target="#share"><img src="share.png"></button></div>
                 <div class="col-12  ibtn" ><button type="submit" class="btn" data-toggle="modal" data-target="#Comment"><img src="comment.png"></button></div>
             </div></div>
           </div><br><br>
@@ -74,7 +74,6 @@
               </div>
             </div>
       </div>
-      
 </body> <br><br><br><br>
 <div class="modal fade" id="Comment">
         <div class="modal-dialog modal-dialog-centered modal-md  modal-dialog-scrollable">
@@ -114,7 +113,6 @@
   </div>
   
 </div>
-
 <footer>
     <div class="footer col-12">
         <div class="row">
@@ -149,7 +147,7 @@
 </footer>
 </html>
 <script>
-const shareButton = document.querySelector('.sharebtnmb');
+ const shareButton = document.querySelector('.sharebtnmb');
 shareButton.addEventListener('click', event => {
   if (navigator.share) { 
    navigator.share({
@@ -180,7 +178,6 @@ alert("URL Copied.");
 <script>
     AOS.init();
 </script>
-
 <?php
 if(isset($_SESSION['rel'])){
   echo "<script>

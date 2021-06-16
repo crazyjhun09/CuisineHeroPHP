@@ -21,4 +21,19 @@ session_start();
 
         $result = mysqli_query($con, $insert);
         $_SESSION['max_id'] = $fID;
+        if($result){
+            $response["success"] = 1;
+            $response["message"] = "New user successfully created.";
+        
+            // echoing JSON response
+            echo json_encode($response);
+            }
+            else
+            {
+                $response["success"] = 0;
+                $response["message"] = 'Database error ' . mysqli_errno($con) . ' ' . mysqli_error($con);
+            
+                // echoing JSON response
+                echo json_encode($response);
+            }
 ?>
