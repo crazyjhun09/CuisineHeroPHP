@@ -306,46 +306,7 @@ $(document).ready(function () {
                         $('#response').html("");
     });
 });
-var croppieDemo = $('#croppie-demo').croppie({
-            enableOrientation: true,
-            viewport: {
-                width: 266.7,
-                height: 366.7,
-            },
-            boundary: {
-                width: 300,
-                height: 400
-            }
-        });
 
-        $('#croppie-input').on('change', function () { 
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                croppieDemo.croppie('bind', {
-                    url: e.target.result
-                });
-            }
-            reader.readAsDataURL(this.files[0]);
-        });
-
-        $('.croppie-upload').on('click', function (ev) {
-            croppieDemo.croppie('result', {
-                type: 'canvas',
-                size: {width: 400,height: 550,}
-            }).then(function (image) {
-                var ext = $('#croppie-input').val().split('.').pop().toLowerCase();
-                if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-                alert('Invalid form input!');
-                }
-                $.ajax({
-                    url: "feed_files/upload.php",
-                    type: "POST",
-                    data: {
-                        "image" : image
-                    },
-                });
-            });
-        });
     $("#checkbox").change(function() {
     if (this.checked){
         if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked')){
@@ -533,6 +494,46 @@ $("button#postbtn").on('click',function() {
         }    
      });   
     });
+    var croppieDemo = $('#croppie-demo').croppie({
+            enableOrientation: true,
+            viewport: {
+                width: 266.7,
+                height: 366.7,
+            },
+            boundary: {
+                width: 300,
+                height: 400
+            }
+        });
+
+        $('#croppie-input').on('change', function () { 
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                croppieDemo.croppie('bind', {
+                    url: e.target.result
+                });
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        $('.croppie-upload').on('click', function (ev) {
+            croppieDemo.croppie('result', {
+                type: 'canvas',
+                size: {width: 400,height: 550,}
+            }).then(function (image) {
+                var ext = $('#croppie-input').val().split('.').pop().toLowerCase();
+                if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+                alert('Invalid form input!');
+                }
+                $.ajax({
+                    url: "feed_files/upload.php",
+                    type: "POST",
+                    data: {
+                        "image" : image
+                    },
+                });
+            });
+        });
         $('button#postbtn').prop('disabled', true);
         $('textarea').keyup(function(){    
         if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked') && $("#croppie-input").val().length>0){
