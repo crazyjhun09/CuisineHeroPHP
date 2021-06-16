@@ -50,11 +50,8 @@
 
 #picbanner{
     display: block;
-    margin: auto;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
 }
 .picban{
     position:absolute;
@@ -300,8 +297,8 @@ button.follow-btn div{
         width:auto;
     }
     .picban{
-        right: 5px;
-        width: 100%;
+        right: -15px;
+        width: inherit;
         left: -15px;
         box-sizing: content-box;
     }
@@ -411,4 +408,20 @@ input[type='password']{
 }
 #croppie-demo1{
     margin-bottom: 50px !important;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(107, 107, 107, 0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 5px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #34b44f;
 }

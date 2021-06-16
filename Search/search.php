@@ -30,7 +30,7 @@
 		$response1 = "<ul class='nores font-weight-bold'>No Recipe found :( <br>
         <img src='empty-cart.png'></ul>";
 
-		$connection1 = new mysqli('localhost', 'root', '', 'food');
+		$connection1 = new mysqli($server,$username,$password,$dbname);
 		$q1 = $connection1->real_escape_string($_POST['q1']);
 
 		$sql1 = $connection1->query("SELECT * FROM food
@@ -123,15 +123,16 @@
 </div>
 <div class="row" id="accordion">
 <div class="collapse ingre1 show" data-parent="#accordion">
-    <div class="col-12">
+    <div class="col-12 text-center">
             <div class="container-fluid">   
             <div class="row  text-center" id="searchquery">
             <input type="text" id="searchBox" class="col-10" name="Search" placeholder="Type your ingredient" autocomplete="off">
-            <a class="col-2" href="#" id="srchbtn"></a>
+            <a href="#" id="srchbtn"></a>
         </div>
     </div>
         <div id="response"></div>
     </div>
+    <br><br>
     <div class="col-12">
         <div class="container-fluid">
         <div class="row pantry">
@@ -163,7 +164,7 @@
 <div class="collapse recp1" data-parent="#accordion">
     <div class="col-12">
             <div class="container-fluid">   
-            <div class="row">
+            <div class="row recipesearch">
             <input type="text" class="col-10" name="txtRecipe" id="searchBox1" placeholder="Type the name of the Recipe" autocomplete="off">
             <a class="col-2" href="#" id="srchbtn2"></a>
         </div>

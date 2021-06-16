@@ -1,4 +1,4 @@
-	<?php
+<?php
 include '../DB/cred.php';
 
 		$con = mysqli_connect($server,$username,$password,$dbname);
@@ -11,7 +11,11 @@ include '../DB/cred.php';
 				LEFT OUTER JOIN veggies ON veggies.food_id = food.food_id
 				LEFT OUTER JOIN meat ON meat.food_id = veggies.food_id
 				LEFT OUTER JOIN condi ON condi.food_id = meat.food_id
-				HAVING veggies_name IN ($ings) OR meat_name IN ($ings) OR condi_name IN ($ings)"); 
+				LEFT OUTER JOIN fruit ON fruit.food_id = condi.food_id
+				LEFT OUTER JOIN oil ON oil.food_id = fruit.food_id
+				LEFT OUTER JOIN spice ON spice.food_id = oil.food_id
+				HAVING veggies_name IN ($ings) OR meat_name IN ($ings) OR condi_name IN ($ings) OR
+						fruit_name IN ($ings) OR oil_name IN ($ings) OR spice_name IN ($ings)"); 
 		
 
       	if($sql->num_rows > 0){
@@ -32,15 +36,15 @@ include '../DB/cred.php';
 					}
 					echo '
 					<div class="card">
-					<a href="javascript:void(0)" class="link" var="'.$row['food_id'].'">
+					<a href="javascript:void(0)" class="link" var="'.$fID.'">
 					<div class="imgcontainer">';
-					$queryImg = "SELECT * FROM recipe_images WHERE food_id=".$row['food_id']."";
+					$queryImg = "SELECT * FROM recipe_images WHERE food_id='$fID'";
 					$resultImg = $con->query($queryImg);
 					$rowImg = $resultImg -> fetch_assoc();
-					echo'	<img src="../Ingredients/Images/'.$rowImg['food_img'].'">
+					echo	'<img src="../Ingredients/Images/'.$rowImg['food_img'].'">
 					</div>
 							<div class="card-body texts">
-									<h3 class="card-title font-weight-bold">'.$row['food_name'].'</h3>
+									<h3 class="card-title font-weight-bold">'.$fName.'</h3>
 									<p class="card-text">'.$firstname.' '.$lastname.'</p>
 									<p class="card-text">'.substr($row['regdate'],0,16).'</p> 
 							</div>  
