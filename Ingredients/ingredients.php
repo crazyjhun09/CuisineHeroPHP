@@ -188,15 +188,13 @@ if(isset($_SESSION['rel'])){
 if (isset($email)){echo"
 <script>
   $('.like-btn').click(function(){
-    if($('.like-btn').val() == 1){
+    if($('.like-btn').hasClass('liked')){
       $('.like-btn').removeClass('liked');
-      $('.like-btn').val(0);
       $.post('likebtn.php', {liked: '-1'});
     }
     else
     {
       $('.like-btn').addClass('liked');
-      $('.like-btn').val(1);
       $.post('likebtn.php', {liked: '1'});
     }
   });
