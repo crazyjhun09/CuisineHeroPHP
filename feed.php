@@ -533,7 +533,7 @@ $("button#postbtn").on('click',function() {
                         "image" : image
                     },
                     success: function(data) {   
-                    alert(data);
+                    //alert(data);
                     }
                 });
             });
