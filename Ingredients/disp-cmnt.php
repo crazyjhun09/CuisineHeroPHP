@@ -11,7 +11,7 @@ if($result=$con->query($querycom)){
     while ($row = $result->fetch_assoc()){
         $email = $row['email'];
         $queryacc = "SELECT * from acc WHERE email = '$email'";
-        echo '<div class="card">
+        echo '<div class="card commentcard">
         <div class="dp"> <!--profile picture-->';
         if($result1=$con->query($queryacc)){
             while($row1=$result1->fetch_array()){

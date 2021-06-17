@@ -134,7 +134,7 @@
         <div id="response"></div>
     </div>
     <br><br>
-    <div class="col-12">
+    <div >
         <div class="container-fluid">
         <div class="row pantry">
         <h2 class="col-10" id="yrpantry">Your Pantry:</h2>

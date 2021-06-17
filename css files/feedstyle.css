@@ -10,7 +10,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color:rgb(68, 99, 62);
+    background-color:rgba(68, 99, 62, 0.687);
+    backdrop-filter: blur(5px);
     justify-content: space-between;
     width: 100%;
     min-height: 8vh;

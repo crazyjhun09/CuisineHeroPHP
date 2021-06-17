@@ -22,7 +22,7 @@
 <header>
   <nav class="navbar navbar-expand-md" id="banner">
       <div class="container-fluid" id="banner1">
-          <a class="navbar-brand" href="#"><img src="../Images\logo white.png"></a>
+          <a class="navbar-brand" href="../feed.php"><img src="../Images\logo white.png"></a>
           <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <img src="../Images\burjer.png" width="30" height="20">
           </button>
@@ -33,6 +33,9 @@
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" id="Feed" href="../feed.php">Feed</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="..\Search\search.php">Search</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="../Profile/profile.php">Profile</a>
@@ -108,10 +111,8 @@
           <button type="button" class="btn btn-default copybtnn" onclick="copyToClipboard()">Copy this link!</button>
         </div>
       </div>
-      
     </div>
   </div>
-  
 </div>
 <footer>
     <div class="footer col-12">
