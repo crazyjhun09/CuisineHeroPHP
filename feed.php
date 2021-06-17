@@ -53,7 +53,7 @@
 <header>
     <nav class="navbar navbar-expand-md" id="banner">
         <div class="container-fluid" id="banner1">
-            <a class="navbar-brand" href="C:\Users\User\Documents\GitHub\CuisineHero\index.html"><img src="Images\logo white.png"></a>
+            <a class="navbar-brand" href="feed.php"><img src="Images\logo white.png"></a>
             <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <img src="Images\burjer.png" width="30" height="20">
             </button>
@@ -533,7 +533,7 @@ $("button#postbtn").on('click',function() {
                         "image" : image
                     },
                     success: function(data) {   
-                    //alert(data);
+                    alert(data);
                     }
                 });
             });

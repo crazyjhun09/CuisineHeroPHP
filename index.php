@@ -58,23 +58,26 @@
                 </div>
             </div>
             <div class="row" id="bottom">
-                <div class="col-lg-12 text-center col-sm-12">
+                <div class="col-lg-12 text-center col-sm-12 d-flex justify-content-center">
                     <form action="Search/search.php">
-                        <button type="submit" class="btn" id="searchbtn">
+                        <button type="submit" class="btn text-center" id="searchbtn">
                             <span id="srch">Search Now</span>
                         </button>
                     </form>
+                    <a class="btn text-center" id="getstarted" href="#landingbot">
+                            <span id="srch">Get Started</span>
+                        </a>
                 </div>
             </div>
         </div>
     </div>
    
     <!--malawak na scroll down ng features-->
-<div class="container-fluid" id="landingbot">
-    <div class="row" id="buffertop">
+<div class="container-fluid landingguide" id="landingbot">
+<div class="row" id="buffertop">
         <div class="col-mid-auto col-sm-3"></div>
     </div>
-    <div class="row d-flex" >
+    <div class="row" data-color="one">
         <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic">
             <div class="images" >
                 <div id="img1">
@@ -83,7 +86,7 @@
             </div>
         </div>
         <div class="col-lg-4 col-sm-12" id="bottext">
-            <div class="textbot">
+        <div class="textbot">
                 <h1 class="font-weight-bold">Share your recipes with the Community.</h1>
                 <p>With the Recipe Feed, you can post your own recipes, and view recipes from your community.</p>
             </div>
@@ -92,10 +95,62 @@
                     id="Sign"><span id="signup">Go to your Feed</span></button>
                 <!--pasabi nalang if babaguhin to :V-->
             </div>
-            
         </div>
     </div>
+    <div class="row" id="buffertop">
+        <div class="col-mid-auto col-sm-3"></div>
+    </div>
+    <div class="row" data-color="two">
+        <div class="col-lg-4 col-sm-12" id="bottext">
+        <div class="textbot">
+                <h1 class="font-weight-bold">Search your faves, in a smart way.</h1>
+                <p>With CuisineHero Search, you can search your favorite recipes with their ingredients and form your pantry! </p>
+            </div>
+            <div class="text-center">
+            <form action="Search/search.php">
+                <button type="submit" class="btn text-center" id="Sign"><span id="signup">Start Searching</span></button>
+            </form>
+            </div>
+        </div>
+        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic">
+            <div class="images" >
+                <div id="img1">
+                    <img id="laptop" src="Images\searchsplash.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="buffertop">
+        <div class="col-mid-auto col-sm-3"></div>
+    </div>
+    <div class="row" data-color="three">
+        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic">
+            <div class="images" >
+                <div id="img1">
+                    <img id="laptop" src="Images\wall.png">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12" id="bottext">
+            <div class="textbot">
+                <h1 class="font-weight-bold">Create your CuisineHero Account today.</h1>
+                <p>Join the CuisineHero community, create beautiful recipes and share them with with your friends and family!.</p>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn" data-toggle="modal" data-target="#Sign-Up"
+                    id="Sign"><span id="signup">Sign Up!</span></button>
+                <!--pasabi nalang if babaguhin to :V-->
+            </div>
+        </div>
+    </div>
+    <div class="row" id="buffertop" data-color="four">
+        <div class="col-mid-auto col-sm-3"></div>
+    </div>
 </div>
+
+
+
+
     <div class="modal fade" id="Sign-Up">
         <div class="modal-dialog modal-dialog-centered modal-lg text-center" >
             <div class="modal-content" id="signupmod">
@@ -171,6 +226,7 @@
         </div>
     </div>
 </div>
+
 </body>
 <footer>
     <div class="footer col-12">
@@ -216,6 +272,25 @@
       }
       prevScrollpos = currentScrollPos;
     }
+</script>
+<script>
+    $(window).scroll(function() {
+  var $window = $(window),
+      $body = $('.landingguide'),
+      $panel = $('.row');
+  var scroll = $window.scrollTop() + ($window.height() / 2);
+  $panel.each(function () {
+    var $this = $(this);
+    if ($this.position().top <= scroll && $this.position().top + $this.height() > scroll) {
+          
+      $body.removeClass(function (index, css) {
+        return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
+      });
+       
+      $body.addClass('color-' + $(this).data('color'));
+    }
+  });    
+}).scroll();
 </script>
 <script>
     $('#Sign').click(function () {

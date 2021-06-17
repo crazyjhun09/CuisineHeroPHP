@@ -44,8 +44,8 @@
 <body>
     <div class="cursor"></div>
     <div class="container-fluid main">
-        <div class="row row1" id="row1" data-color="black">
-                <div class="col-12 overflow-hidden col1">
+        <div class="row row1" id="row1" data-color="three">
+                <div class="col-12 col1">
                     <div class="textbg">
                         <p class="animtext2">cookies
                             chives steak poultry seasoning croutons butter creme fraiche
@@ -167,7 +167,7 @@ By your participation and invitations, CuisineHero will be able to expand its us
                         <h5>Front-End Developer - UX/UI Designer</h5>
                     </div>
                 </div>
-                <div class="row subrow4" data-color="black" data-aos="fade-left"
+                <div class="row subrow4" data-color="four" data-aos="fade-left"
                 data-aos-duration="3000">
                     <div class="team">
                         <div class="contacts">
@@ -203,7 +203,36 @@ By your participation and invitations, CuisineHero will be able to expand its us
                 </div>         
             </div>
         </div>
-           
+        <div class="row row5" id="row5" data-color="four">
+            <div class="col-12 overflow-hidden col1">
+                <div class="textbg">
+                    <p class="animtext2">cookies
+                        chives steak poultry seasoning croutons butter creme fraiche
+                        pine nuts vanilla bean cornstarch kiwi cream cheese red snapper olive oil bard habanero chilies tortillas swordfish mascarpone chard
+                        cherries rose water brown rice dumpling pickles corn flour pumpkin seeds lima beans bean sprouts pico de gallo baconfennel alfredo sauce trout molasses aioli sage corned beef
+                        french fries rice vinegar balsamic vinegar andouille sausage provolone ham onion powder eel barley pineapples truffles</p>
+                    <p class="animtext" data-scroll>grapefruit steaks eggplants eggs Kosher salt black pepper grapefruit steaks eggplants eggs Kosher salt black pepper oil crabmeat oil crabmeat Fish garlic jasmine rice banana fresh lemon soy sauce sugarcane vinegar brown sugar chicken vinegar bay leaves chicken legs</p>
+                    <p class="animtext">
+                        sour cream red pepper flakes hoisin sauce moo shu wrappers mayonnaise cornmeal Havarti cheese date sugar
+                        duck sweet potatoes plum tomatoes rice vinegar mint romaine lettuce okra beef sardines water chestnuts pecans wasabi
+                    </p>
+                    <p class="animtext2" data-scroll>grapefruit steaks eggplants eggs Kosher salt black pepper grapefruit steaks eggplants eggs Kosher salt black pepper oil crabmeat oil crabmeat Fish garlic jasmine rice banana fresh lemon soy sauce sugarcane vinegar brown sugar chicken vinegar bay leaves chicken legs</p>
+                    <p class="animtext">
+                        sour cream red pepper flakes hoisin sauce moo shu wrappers mayonnaise cornmeal Havarti cheese date sugar
+                        duck sweet potatoes plum tomatoes rice vinegar mint romaine lettuce okra beef sardines water chestnuts pecans wasabi
+                    </p>
+                    <p class="animtext2">
+                        sour cream red pepper flakes hoisin sauce moo shu wrappers mayonnaise cornmeal Havarti cheese date sugar
+                        duck sweet potatoes plum tomatoes rice vinegar mint romaine lettuce okra beef sardines water chestnuts pecans wasabi
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 text-center" data-scroll-section>
+                <div data-scroll class="lerp">
+                    <span class="font-weight-bold title">Thank you !</span>         
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <footer>
@@ -245,21 +274,14 @@ By your participation and invitations, CuisineHero will be able to expand its us
     AOS.init();
   </script>
   <script>
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-    var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("banner").style.top = "0";
-      } else {
-        document.getElementById("banner").style.top = "-110px";
-      }
-      prevScrollpos = currentScrollPos;
-    } 
 
     let mouseCursor = document.querySelector(".cursor");
         let button = document.querySelector(".nav-link");
         let text = document.querySelector(".lerp");
         let row3 = document.querySelector(".row3");
+        let row4 = document.querySelector(".row4");
+        let row5 = document.querySelector(".row5");
+        let foot = document.querySelector("footer");
 
         window.addEventListener('mousemove', cursor);
         function cursor(e){
@@ -286,6 +308,24 @@ By your participation and invitations, CuisineHero will be able to expand its us
             row3.addEventListener('mouseleave', () => {
                 mouseCursor.classList.remove("select2");
             });
+            row4.addEventListener('mouseover', () => {
+                mouseCursor.classList.add("select3");
+            });
+            row4.addEventListener('mouseleave', () => {
+                mouseCursor.classList.remove("select3");
+            });
+            row5.addEventListener('mouseover', () => {
+                mouseCursor.classList.add("select3");
+            });
+            row5.addEventListener('mouseleave', () => {
+                mouseCursor.classList.remove("select3");
+            });
+            foot.addEventListener('mouseover', () => {
+                mouseCursor.classList.add("select3");
+            });
+            foot.addEventListener('mouseleave', () => {
+                mouseCursor.classList.remove("select3");
+            });
 
 </script>
 <script>
@@ -298,31 +338,7 @@ By your participation and invitations, CuisineHero will be able to expand its us
 })
 </script>
 <script>
-      const article = document.querySelector('.row1');
-
-// to compute the center of the card retrieve its coordinates and dimensions
-const {
-  x, y, width, height,
-} = article.getBoundingClientRect();
-const cx = x + width / 2;
-const cy = y + height / 2;
-
-// following the mousemove event compute the distance betwen the cursor and the center of the card
-function handleMove(e) {
-  const { pageX, pageY } = e;
-
-  // ! consider the relative distance in the [-1, 1] range
-  const dx = (cx - pageX) / (width / 2);
-  const dy = (cy - pageY) / (height / 2);
-
-  // rotate the card around the x axis, according to the vertical distance, and around the y acis, according to the horizontal gap 
-  this.style.transform = `rotateX(${20 * dy * -1}deg) rotateY(${20 * dx}deg)`;
-}
-
-// following the mouseout event reset the transform property
-function handleOut() {
-  this.style.transform = 'initial';
-}
+     
 
 article.addEventListener('mousemove', handleMove);
 article.addEventListener('mouseout', handleOut);

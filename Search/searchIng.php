@@ -57,9 +57,9 @@ include '../DB/cred.php';
             	}$prevID = $row["food_id"];
             }
       	}
-      	else{echo '<div class="text-center" style="position:relative; width:max-content; height:max-content; top:50px; left:150px;">
-				<img style="width:auto; height:250px;" src="https://media.giphy.com/media/e1BaXMrzPgNjOgDXwG/giphy.gif">
-				<p style="font-size:30px;"> No Recipes Found :( </p>
+      	else{echo '<div class="text-center" id="startsplash" style="position:relative; width:max-content; height:max-content; top:50px; left:150px;">
+				<img style="width:auto; height:200px;" src="https://media.giphy.com/media/e1BaXMrzPgNjOgDXwG/giphy.gif">
+				<p style="font-size:30px;"> No Recipe Found :( </p>
 			</div>';}
 		  echo'<script>
 		  $(".link").click(function() {

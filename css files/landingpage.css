@@ -11,6 +11,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   background-color:rgba(15, 11, 37, 0.219);
+  backdrop-filter: blur(5px);
   justify-content: space-between;
   width: 100%;
   min-height: 8vh;
@@ -173,7 +174,7 @@
 /* landing second section */
 #landingbot{
   position: relative;
-  height:110vh;
+  transition: background-color 2s ease;
 }
 #botpic{
   object-fit: contain;
@@ -224,9 +225,20 @@
 #landingbot{
  height: max-content;
 }
-.textbot{
- top:10px;
-text-align: center;
+#bottext {
+  text-align: center;
+}
+#bottext p{
+  font-size: 15px;
+}
+#laptop{
+  margin-bottom: 100px;
+}
+#srch{
+  font-size:4vw;
+}
+#signup{
+  font-size:15px;
 }
 }
 
@@ -440,4 +452,29 @@ color: black;
 ::-webkit-scrollbar-thumb
 {
 	background-color: #34b44f;
+}
+
+#bottom a{
+  padding-left: 10px;
+  margin: 13px;
+  border: solid white;
+  height: max-content;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.347);
+  transition: ease 0.8s;
+}
+#bottom a:HOVER #srch{
+  font-size: 25px;
+}
+.color-one{
+  background-color: #ffffff;
+}
+.color-two{
+  background-color: rgb(125, 236, 141);
+}
+.color-three{
+  background-color: rgb(17, 185, 187);
+}
+.color-four{
+  background-color: rgb(196, 154, 114)
 }
