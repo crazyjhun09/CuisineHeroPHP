@@ -10,19 +10,16 @@
 
 		$sql = $connection->query("SELECT * FROM ingredients_all
 				WHERE ing_name LIKE '%$q%'");
-		if ($sql->num_rows > 0) { 
+
+		if ($sql->num_rows > 0) {
 			$response = "<ul>";
 			$prevIng = false;
-            $lim1 = 0;
 			while ($data = $sql->fetch_assoc()){
-                if ($lim1 != 5){
-                $lim1++;
 				$ingName = $data['ing_name'];
 				if($prevIng == $ingName){$ingName = ' ';}
             	else{$response .= "<li class='ing-list'>" .$ingName. "</li>";}
             	$prevIng = $data['ing_name'];
 			}
-        }
 			$response .= "</ul>";
 		}
 
@@ -39,19 +36,16 @@
 
 		$sql1 = $connection1->query("SELECT * FROM food
 				WHERE food_name LIKE '%$q1%'");
+
 		if ($sql1->num_rows > 0) {
 			$response1 = "<ul>";
 			$prevFood = false;
-            $lim2 = 0;
 			while ($data1 = $sql1->fetch_assoc()){
-                if ($lim2 != 5){
-                $lim2++;
 				$fName = $data1['food_name'];
 				if(strtoupper($prevFood) == strtoupper($fName)){$fName = ' ';}
             	else{$response1 .= "<li class='sb1'>" .$fName. "</li>";}
             	$prevFood = $data1['food_name'];
 			}
-        }
 			$response1 .= "</ul>";
 		}
 

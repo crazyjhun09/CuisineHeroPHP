@@ -178,11 +178,6 @@ alert("URL Copied.");
 </script>
 <script>
     AOS.init();
-    $('.link1').click(function() {
-    var link = $(this).attr('var');
-    $('.post1').attr('value',link);
-    $('.redirect1').submit();
-    });
 </script>
 <?php
 if(isset($_SESSION['rel'])){
@@ -204,7 +199,6 @@ if (isset($email)){echo"
       $.post('likebtn.php', {liked: '1'});
     }
   });
-
 </script>";
 }else{echo"
   <script>

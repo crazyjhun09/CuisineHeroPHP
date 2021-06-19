@@ -11,14 +11,9 @@ while($row = $result->fetch_assoc()){
     $result1 = $con->query($queryfav);
         while($row1 = $result1->fetch_array()){
             $email1 = $row1['author'];
-            $sel = "SELECT * FROM acc WHERE email = '$email1'";
-            if($resultE = $con->query($sel)){
-                while($rowE = $resultE->fetch_assoc()){
             echo '<div class="card col-12 col-md-4">
-            <a href="javascript:void(0)" class="link1" var="'.$rowE['id'].'">
+            <a href="javascript:void(0)" class="link1" var="'.$row1['author'].'">
             <div class="dp">';
-                }
-            }
             $queryname = "SELECT * FROM acc WHERE email='$email1'";
             $result2 = $con->query($queryname);
             while ($row2 = $result2->fetch_array()){

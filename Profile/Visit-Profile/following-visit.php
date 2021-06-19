@@ -11,11 +11,8 @@ while($row = $result->fetch_assoc()){
     $result1 = $con->query($queryfollow);
         while($row1 = $result1->fetch_array()){
             $email1 = $row1['email'];
-            $sel = "SELECT * FROM acc WHERE email = '$email1'";
-            if($resultE = $con->query($sel)){
-                while($rowE = $resultE->fetch_assoc()){
             echo '<div class="card following col-12 col-md-4">
-            <a href="javascript:void(0)" class="link1" var="'.$rowE['id'].'">
+            <a href="javascript:void(0)" class="link1" var="'.$row1['email'].'">
             <div class="dp">
             <img src="../images/'.$row1['dispic'].'">
             </div>
@@ -26,8 +23,6 @@ while($row = $result->fetch_assoc()){
             <input type="submit" style="display: none;">
             </form>';
             }
-        }
-    }
 }
 }
 ?>
