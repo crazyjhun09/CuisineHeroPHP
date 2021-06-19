@@ -21,6 +21,8 @@ session_start();
 
         $result = mysqli_query($con, $insert);
         $_SESSION['max_id'] = $fID;
+        $sql = "UPDATE acc SET recpno = recpno+1";
+        mysqli_query($con,$sql);
         if($result){
             $response["success"] = 1;
             $response["message"] = "New user successfully created.";
