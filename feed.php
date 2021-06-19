@@ -377,7 +377,7 @@ $(window).on('beforeunload', function(){
 });
 
 
-$("button#postbtn").on('click',function() {
+$("#recp-form").submit(function() {
     var meatArray = [];var meatAmt = [];
     var oilArray = [];var oilAmt = [];
     var vegArray = [];var vegAmt = [];
@@ -540,7 +540,7 @@ $("button#postbtn").on('click',function() {
             reader.readAsDataURL(this.files[0]);
         });
 
-        $('.croppie-upload').on('click', function (ev) {
+        $('#recp-form').submit(function (ev) {
             croppieDemo.croppie('result', {
                 type: 'canvas',
                 size: {width: 400,height: 550,}
