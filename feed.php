@@ -20,12 +20,16 @@
 		if ($sql->num_rows > 0) {
 			$response = "<ul>";
 			$prevIng = false;
+            $lim=0;
 			while ($data = $sql->fetch_assoc()){
+                if($lim!=5){
+                $lim++;
 				$ingName = $data['ing_name'];
 				if($prevIng == $ingName){$ingName = ' ';}
             	else{$response .= "<li class='ing-list'>" .$ingName. "</li>";}
             	$prevIng = $data['ing_name'];
 			}
+        }
 			$response .= "</ul>";
 		}
 
@@ -85,10 +89,10 @@
                     <div class="col-12 text-center" id="buffer">
                         <ul class="nav nav-tabs justify-content-center" role="tablist">
                             <li class="nav-item">
-                              <a class="nav-link active" data-toggle="tab" href="#feed">Feed</a>
+                              <a class="nav-link active" data-toggle="tab" href="#feed" id="feed-wall">Feed</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" data-toggle="tab" href="#postform">Add Post</a>
+                              <a class="nav-link" data-toggle="tab" href="#postform" id="addPost">Add Post</a>
                             </li>
                         </ul>
                     </div>
@@ -222,6 +226,19 @@
 </body>
 </html>
 <script>
+window.onload = function() {
+   var addPost = localStorage.getItem("active");
+   if (addPost == 1){
+    setTimeout(function(){
+
+$("#addPost").click();
+
+
+},500);
+
+    localStorage.setItem("active",0);
+   }
+}
 var cl_categ;
 $(".link").click(function() {
 var link = $(this).attr('var');

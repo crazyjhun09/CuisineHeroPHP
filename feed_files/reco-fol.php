@@ -12,7 +12,7 @@ if($result=$con->query($sel)){
         $result1=$con->query($sel1);
         $row1=$result1->fetch_array();
         if(!isset($row1['author'])){
-        echo '<a href="javascript:void(0)" class="link1" var="'.$author.'">
+        echo '<a href="javascript:void(0)" class="link1" var="'.$row['id'].'">
         <div class="personcard justify-content-center;" style="cursor: pointer;""> <!--per user ito na recommended-->
         <p class="usrnm2">'.$row['firstname'].' '.$row['lastname'].'</p>
         <div class="dp2">

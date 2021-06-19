@@ -54,7 +54,11 @@
   <div class="row">
 <div class="col-12 Editbtn">
     <button type="button" class="btn" data-toggle="modal" data-target="#EditProf"id="Edit"><div>Edit Profile</div></button>
-</div></div>
+</div>
+<div class="col-12 Addbtn">
+    <button type="button" class="btn" id="Add"><div>Add Post</div></button>
+</div>
+</div>
 <div class="container-fluid spacing" id="hey">
                 <div class="row">
                     <div class="col-12 text-center" id="buffer">
@@ -166,6 +170,11 @@
     </div></div></div></div>
 </html>
 <script type="text/javascript">
+        $('button#Add').click(function(){
+            var addPost = 1;
+            localStorage.setItem("active",addPost);
+            location.replace('../feed.php');
+        });
         $('#EditProf').on('hidden.bs.modal', function () {
          location.reload();
         })

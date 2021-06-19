@@ -14,9 +14,14 @@ while($row = $result->fetch_assoc()){
         while($row1 = $result1->fetch_array()){
             if ($lim != 3){ $lim++;
             $email1 = $row1['author'];
+            $sel = "SELECT * FROM acc WHERE email = '$email1'";
+            if($resultE = $con->query($sel)){
+                while($rowE = $resultE->fetch_assoc()){
             echo '<div class="card">
-            <a href="javascript:void(0)" class="link1" var="'.$row1['author'].'">
+            <a href="javascript:void(0)" class="link1" var="'.$rowE['id'].'">
             <div class="dp">';
+            }
+        }
             $queryname = "SELECT * FROM acc WHERE email='$email1'";
             $result2 = $con->query($queryname);
             while ($row2 = $result2->fetch_array()){
