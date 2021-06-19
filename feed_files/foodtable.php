@@ -18,7 +18,8 @@ session_start();
 
         $insert="INSERT INTO food(food_id, food_name, author, prep_time, cook_time, servings, video_link, proced, nutri_info, likes) 
                     VALUES ('$fID','$recName' ,'$email', '$timePrep', '$timeCook', '$serveSize', '$ytlink', '$procedure', '$nutriValue', '0')";
-
+        $sql = "UPDATE acc SET recpno = recpno+1";
+        mysqli_query($con,$sql);
         $result = mysqli_query($con, $insert);
         $_SESSION['max_id'] = $fID;
         if($result){
