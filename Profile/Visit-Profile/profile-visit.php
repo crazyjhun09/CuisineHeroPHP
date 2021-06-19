@@ -33,7 +33,7 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                      <a class="nav-link d-block d-sm-block d-md-none" href="../feed.php">CuisineHero</a>
+                      <a class="nav-link d-block d-sm-block d-md-none" href="../../feed.php">CuisineHero</a>
                   </li>
                   <li class="nav-item">
                         <a class="nav-link" href="../../Search/search.php">Search</a>

@@ -275,6 +275,9 @@
 </script>
 <script>
     $(window).scroll(function() {
+        if(!$("button.navbar-toggler").hasClass('collapsed')){
+        $('button.navbar-toggler').click();
+    }
   var $window = $(window),
       $body = $('.landingguide'),
       $panel = $('.row');
@@ -291,6 +294,7 @@
     }
   });    
 }).scroll();
+
 </script>
 <script>
     $('#Sign').click(function () {

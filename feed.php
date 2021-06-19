@@ -64,7 +64,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link d-block d-sm-block d-md-none" href="index.html">CuisineHero</a>
+                        <a class="nav-link d-block d-sm-block d-md-none" href="feed.php">CuisineHero</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Search/search.php">Search</a>
@@ -239,6 +239,12 @@ $("#addPost").click();
     localStorage.setItem("active",0);
    }
 }
+
+$('div').scroll(function(){
+    if(!$("button.navbar-toggler").hasClass('collapsed')){
+        $('button.navbar-toggler').click();
+    }
+});
 var cl_categ;
 $(".link").click(function() {
 var link = $(this).attr('var');
