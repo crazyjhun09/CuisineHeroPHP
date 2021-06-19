@@ -398,3 +398,7 @@ iframe{
     .commentcard .usrnm{
         font-weight: bold;
     }
+    .commentcard a:link,.card a:visited,.card a:hover,.card a:active{
+        text-decoration: none;
+        color: black;
+    }

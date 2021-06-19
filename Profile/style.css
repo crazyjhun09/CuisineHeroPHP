@@ -95,7 +95,6 @@
 }
 button.btn#Edit div:hover{
     filter: invert(100);
-
     padding-right: 5px;
     padding-left:5px;
     font-size: 18px;
@@ -105,6 +104,25 @@ button.btn#Edit div{
     transition: ease-in-out 0.5s;
     left: 71vw;
     top: 255px;
+    width: 120px;
+    border-radius: 100px;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    font-family: 'Raleway';
+    font-size:15px;
+}
+button.btn#Add div:hover{
+    filter: invert(100);
+    padding-right: 5px;
+    padding-left:5px;
+    font-size: 18px;
+}
+button.btn#Add div{
+    position: absolute;
+    transition: ease-in-out 0.5s;
+    left: 71vw;
+    top: 300px;
     width: 120px;
     border-radius: 100px;
     color: white;
@@ -140,6 +158,11 @@ button.btn#Edit div{
     height: 250px;
 }
 .Editbtn{
+    width: 0;
+    margin: 0;
+    padding: 0; 
+}
+.Addbtn{
     width: 0;
     margin: 0;
     padding: 0; 
@@ -287,6 +310,12 @@ button.follow-btn div{
         margin-left: auto;
         margin-right: auto;
     }
+    button.btn#Add div{
+        position: static;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
     button.follow-btn div{
         position: static;
         display: block;
@@ -315,6 +344,13 @@ button.follow-btn div{
         margin-top: 170px;
     }
     .row .Editbtn{
+        position: static;
+        min-width: 105vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .row .Addbtn{
         position: static;
         min-width: 105vw;
         margin-left: auto;
