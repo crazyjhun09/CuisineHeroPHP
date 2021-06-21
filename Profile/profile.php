@@ -168,8 +168,47 @@
         </div>
             </div>
     </div></div></div></div>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+        <div class="modal-body">
+                Are you sure that you want to delete the recipe?
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" id="del-recp">Delete</button>
+        </div>
+    </div>
+  </div>
+</div>
 </html>
 <script type="text/javascript">
+        $('button#del-recp').on('click',function(){
+            var food_id = $('button#del-id').val();
+            $.ajax({
+                    url: "del-recp.php",
+                    type: "POST",
+                    data: {
+                        "food_id" : food_id
+                    },
+                    success: function (data) {
+                        alert(data);
+                    }
+            });
+        });
+        $('button#edit-recp').on('click',function(){
+            var food_id = $(this).val();
+            $.ajax({
+                    url: "recp-editor.php",
+                    type: "POST",
+                    data: {
+                        "food_id" : food_id
+                    },
+                    success: function (data) {
+                        window.location.replace('../edit.php');
+                    }
+            });
+        });
         $('button#Add').click(function(){
             var addPost = 1;
             localStorage.setItem("active",addPost);
@@ -177,7 +216,7 @@
         });
         $('#EditProf').on('hidden.bs.modal', function () {
          location.reload();
-        })
+        });
         var croppieDemo = $('#croppie-demo').croppie({
             enableOrientation: true,
             viewport: {

@@ -1,17 +1,28 @@
-<?php
-    session_start();
-    if(isset($_SESSION['firstname']) && isset($_SESSION['email'])){
-        include 'DB/cred.php';
-    $email = isset($_SESSION['email'])? $_SESSION['email'] : null;
-    $con = mysqli_connect($server,$username,$password,$dbname);
-    $query = "SELECT * FROM acc WHERE email = '$email'";
-    if ($result = $con->query($query)){
-        $row = mysqli_fetch_array($result);
-?>
 <?php //Ingredients Name
+  session_start();
+  include_once "DB/cred.php";
+  $con = mysqli_connect($server,$username,$password,$dbname);
+  /*session_start();
+  if(!isset($_SESSION['user']))
+  {
+    header("Location: ../index.php");
+  }*/
+  $food_id = isset($_SESSION['recp-id'])? $_SESSION['recp-id'] : null;
+  $callFood = "SELECT * FROM food WHERE food_id = '$food_id'";
+  $callFood1 = mysqli_query($con, $callFood);
+  $editFood = mysqli_fetch_assoc($callFood1); 
+
+  $queryf = "SELECT * FROM food WHERE food_id = '$food_id'";
+  $querym = "SELECT * FROM meat WHERE food_id = '$food_id'";
+  $queryv = "SELECT * FROM veggies WHERE food_id = '$food_id'";
+  $queryc = "SELECT * FROM condi WHERE food_id = '$food_id'";
+  $queryo = "SELECT * FROM oil WHERE food_id = '$food_id'";
+  $queryft = "SELECT * FROM fruit WHERE food_id = '$food_id'";
+  $queryss = "SELECT * FROM spice WHERE food_id = '$food_id'";
+
 	if (isset($_POST['search'])) {
 		$response = "";
-            $connection = new mysqli($server,$username,$password,$dbname);
+
 		$q = $connection->real_escape_string($_POST['q']);
 
 		$sql = $connection->query("SELECT * FROM ingredients_all
@@ -84,83 +95,29 @@
     </nav>
 </header>
 <body>
-            <div class="container-fluid" id="hey">
-                <div class="row">
-                    <div class="col-12 text-center" id="buffer">
-                        <ul class="nav nav-tabs justify-content-center" role="tablist">
-                            <li class="nav-item">
-                              <a class="nav-link active" data-toggle="tab" href="#feed" id="feed-wall">Feed</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" data-toggle="tab" href="#postform" id="addPost">Add Post</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="tab-content">
-                    <div id="feed" class="container tab-pane active"><br>
-                        <div class="row" id="sec2">
-                            <div class="col-lg-3 d-none d-lg-block d-xl-block" id="firstsec">
-                                <div class="profcard float-right">
-                                    <div class="prf">
-                                        <div class="prfimg">
-                                            <?php echo "<img class='image-fluid' src='Profile/images/".$row['dispic']."'>";?>
-                                             <!--profile picture-->
-                                        </div>
-                                        <div class="prfname">
-                                            <?php echo '<h3>'.$row["firstname"].' '.$row["lastname"].'</h3>';?>
-                                            <!--username-->
-                                        </div>
-                                        <div class="prfdata">
-                                            <h5 class="buddycount">Followers: <span><?php echo $row['followno'];?><!--bilang ng friends--></span> <br> <br>  Recipe:<span> <?php echo $row['recpno'];?><!--bilang ng friends--></span></h5> <!--bilang ng friends-->
-                                        </div>
-                                        <a href="Profile/profile.php" class="btn" role="button" id="profbtn"><span id="prftxt">Profile</span></a>
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="col-lg-6 d-sm-12 d-flex justify-content-center" id="mainsec">
-                            <div class="container-fluid">
-                            <div class="row d-flex justify-content-center">
-                                <!--this is where the posts will go-->
-                                <div class="posts">
-                                    <?php include 'feed_files/Post.php'?>  
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-lg-3 d-none d-lg-block d-xl-block text-center" id="thirdsec">
-                                <div class="community">
-                                    <div class="comcard ">
-                                        <h3>Recommended Follows</h3>
-                                        <?php include 'feed_files/reco-fol.php'?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="postform" class="container tab-pane fade"><br>
+                    <div id="postform" class="container tab-pane"><br>
                       <div class="row" id="sec3">
                         <div class="col text-center" id="formcol">
-                            <h1>Share your own recipes!</h1>
-                            <form method="POST" action="Profile/profile.php" id="recp-form">
+                            <h1>Edit Recipe</h1>
+                            <form method="POST" action = "Profile/profile.php" id="recp-form">
                                 <div id="croppie-demo"></div>
                                 <label for="recimg"><span class="formlabel">Upload Recipe Picture</span></label><br>
-                                <input type="file" id="croppie-input" name="filename" class="text-center" required>
+                                <input type="file" id="croppie-input" name="filename" class="text-center">
                                 <div class="form-group">
                                     <label for="rec"><span class="formlabel">Recipe Name:</span></label>
-                                    <textarea class="form-control" rows="1" name="recname" id="recname" required maxlength="30"></textarea>
+                                    <textarea class="form-control" rows="1" name="recname" id="recname" required maxlength="30"><?php echo $editFood['food_name']; ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="prep"><span class="formlabel">Preparation Time:</span></label>
-                                    <textarea class="form-control" rows="1" name="preptime" id="preptime" required maxlength="15"></textarea>
+                                    <textarea class="form-control" rows="1" name="preptime" id="preptime" required maxlength="15"><?php echo $editFood['prep_time']; ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="cookt"><span class="formlabel">Cooking Time:</span></label>
-                                    <textarea class="form-control" rows="1" name="cooktime" id="cooktime" required maxlength="15"></textarea>
+                                    <textarea class="form-control" rows="1" name="cooktime" id="cooktime" required maxlength="15"><?php echo $editFood['cook_time']; ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="serv"><span class="formlabel">Serving:</span></label>
-                                    <textarea class="form-control" rows="1" name="serve" id="serve" required maxlength="30"></textarea>
+                                    <textarea class="form-control" rows="1" name="serve" id="serve" required maxlength="30"><?php echo $editFood['servings']; ?></textarea>
                                 </div>
                                 <div class="form-group" id="ingrform">
                                     <label for="ingredients"><span class="formlabel">Ingredients:</span></label><br>
@@ -193,7 +150,103 @@
                                     <div class="col-md-6 col-12">
                                         <span class="sayoheading">List of Ingredients:</span>
                                         <div class="container-fluid">
-                                            <div class="row app-Ings d-flex justify-content-center"><!--Ingredients will go here-->
+                                            <div class="row app-Ings d-flex justify-content-center">
+                                              <script>$(document).on('click', 'button.delbtn', function() {
+                                                      $(this).closest('sayo').remove();
+                                                });
+                                              </script>
+                                            <?php
+                                            if ($result = $con->query($querym)){
+
+    $row=$result->fetch_assoc();
+    $check = $row['meat_name'];
+      if(isset($check)){
+    //echo '<h4 class="col-12 Indention-Ing font-weight-bold">Protein/Meat:</h4>';
+    $result = $con->query($querym);
+    while($row = $result->fetch_assoc()) {
+      $categ = 'meat';
+      $meatname = $row["meat_name"];
+      $meatamt = $row["meat_amt"];
+      echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$meatname.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$meatamt.'</span></sayo>';
+    }
+  }
+
+}
+
+if ($result = $con->query($queryo)){
+    $row=$result->fetch_assoc();
+    $check = $row['oil_name'];
+      if(isset($check)){
+    //echo '<h4 class="col-12 Indention-Ing font-weight-bold">Oil/Liquid:</h4>';
+    $result = $con->query($queryo);
+    while($row = $result->fetch_assoc()) {
+      $categ = 'oil';
+      $oilname = $row["oil_name"];
+      $oilamt = $row["oil_amt"];
+      echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$oilname.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$oilamt.'</span></sayo>';
+    }
+  }
+}
+
+
+if($result = $con->query($queryv)){
+    $row=$result->fetch_assoc();
+    $check = $row['veggies_name'];
+      if(isset($check)){
+  //echo '<h4 class="col-12 Indention-Ing font-weight-bold">Vegetables:</h4>';
+  $result = $con->query($queryv);
+    while($row = $result->fetch_assoc()) {
+      $categ = 'veggies';
+      $vegname = $row["veggies_name"];
+      $vegamt = $row["veggies_amt"];
+      echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$vegname.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$vegamt.'</span></sayo>';
+    }
+  }
+}
+if ($result = $con->query($queryft)){
+    $row=$result->fetch_assoc();
+    $check = $row['fruit_name'];
+      if(isset($check)){
+    //echo '<h4 class="col-12 Indention-Ing font-weight-bold">Fruits:</h4>';
+    $result = $con->query($queryft);
+    while($row = $result->fetch_assoc()) {
+      $categ = 'fruit';
+      $fruitname = $row["fruit_name"];
+      $fruitamt = $row["fruit_amt"];
+      echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$fruitname.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$fruitamt.'</span></sayo>';
+    }
+  }
+}
+if ($result = $con->query($queryss)){
+    $row=$result->fetch_assoc();
+    $check = $row['spice_name'];
+      if(isset($check)){
+    //echo '<h4 class="col-12 Indention-Ing font-weight-bold">Spices/Seasonings:</h4>';
+    $result = $con->query($queryss);
+    while($row = $result->fetch_assoc()) {
+      $categ = 'spice';
+      $spicename = $row["spice_name"];
+      $spiceamt = $row["spice_amt"];
+      echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$spicename.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$spiceamt.'</span></sayo>';
+    }
+  }
+}
+
+if($result = $con->query($queryc)){
+  $row=$result->fetch_assoc();
+  $check = $row['condi_name'];
+    if(isset($check)){
+  //echo '<h4 class="col-12 Indention-Ing font-weight-bold">Condiments:</h4>';
+  $result = $con->query($queryc);
+    while($row = $result->fetch_assoc()) {
+      $categ = 'condi';
+      $condiname = $row["condi_name"];
+      $condiamt = $row["condi_amt"];
+      echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$condiname.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$condiamt.'</span></sayo>';
+    }
+  }
+}
+?><!--Ingredients will go here-->
                                             </div>
                                         </div>
                                     </div>
@@ -202,15 +255,15 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="procedures"><span class="formlabel">Procedures:</span></label>
-                                    <textarea class="form-control" rows="5" name="proce" id="proce" required></textarea>
+                                    <textarea class="form-control" rows="5" name="proce" id="proce" required><?php echo $editFood['proced']; ?></textarea>
                                   </div>
                                   <div class="form-group">
                                     <label for="nutri"><span class="formlabel">Nutritional Value (Optional):</span></label>
-                                    <textarea class="form-control" rows="5" name="nutrval" id="nutrval"></textarea>
+                                    <textarea class="form-control" rows="5" name="nutrval" id="nutrval"> <?php echo $editFood['nutri_info']; ?></textarea>
                                   </div>
                                   <div class="form-group">
                                     <label for="ytlink"><span class="formlabel">Youtube Link Tutorial (Optional): (Right-click video and choose "Copy embed code")</span></label>
-                                    <textarea class="form-control" rows="1" name="ytlink" id="ytlink"></textarea>
+                                    <textarea class="form-control" rows="1" name="ytlink" id="ytlink"><?php echo $editFood['video_link']; ?></textarea>
                                   </div>
                                   <div class="d-flex justify-content-center">
                                   <input type="checkbox" name="checkbox" id="checkbox"><span class="disclaimer">Please be sure of legitimacy, any form of misinformation will result to account termination.</span><br>
@@ -271,7 +324,7 @@ $(document).on('click', 'button#add-Ing', function () {
             cl_categ = 'oil';
         }
         else if (category == 'Vegetables'){
-            cl_categ = 'veg';
+            cl_categ = 'veggies';
         }
         else {
             cl_categ = 'condi';
@@ -348,7 +401,7 @@ $(document).ready(function () {
         var ytlink = $("#ytlink").val();
 
         $.ajax({ 
-        url: "feed_files/foodtable.php", 
+        url: "feed_files/foodEdit.php", 
         type: "POST", 
         data: { 'recname' : recname, 'cooktime':cooktime, 'preptime' : preptime, "serve":serve, "proce":proce, "nutrval":nutrval, "ytlink":ytlink}, 
         success: function(data) {   
@@ -378,6 +431,14 @@ $(window).on('beforeunload', function(){
 
 
 $("#recp-form").submit(function() {
+    $.ajax({ 
+        url: "Ingredients/deleteIng.php", 
+        type: "POST", 
+        data: {}, 
+        success: function(data) {   
+            //alert(data);
+        }    
+     });
     var meatArray = [];var meatAmt = [];
     var oilArray = [];var oilAmt = [];
     var vegArray = [];var vegAmt = [];
@@ -399,7 +460,7 @@ $("#recp-form").submit(function() {
      });
 
      $.ajax({ 
-        url: "feed_files/submit.php", 
+        url: "Ingredients/insertIng.php", 
         type: "POST", 
         data: { 'ingArray' : meatArray, 'categ' : "meat", 'ingAmt' : meatAmt}, 
         success: function(data) {   
@@ -422,7 +483,7 @@ $("#recp-form").submit(function() {
      });
     
     $.ajax({ 
-        url: "feed_files/submit.php", 
+        url: "Ingredients/insertIng.php", 
         type: "POST", 
         data: { 'ingArray' : oilArray, 'categ':"oil", 'ingAmt' : oilAmt}, 
         success: function(data) {   
@@ -433,8 +494,8 @@ $("#recp-form").submit(function() {
     $("sayo.ingrds").each(function() {
         var ingredients = [];
         var amounts = [];
-        var ingData = $(this).find('span.veg');
-        var amtData = $(this).find('span.amt-veg');
+        var ingData = $(this).find('span.veggies');
+        var amtData = $(this).find('span.amt-veggies');
         if (ingData.length > 0 && amtData.length > 0) {
              ingData.each(function() { ingredients.push($(this).text()); });
              amtData.each(function() { amounts.push($(this).text()); });
@@ -444,7 +505,7 @@ $("#recp-form").submit(function() {
      });
     
     $.ajax({ 
-        url: "feed_files/submit.php", 
+        url: "Ingredients/insertIng.php", 
         type: "POST", 
         data: { 'ingArray' : vegArray, 'categ':"veggies", 'ingAmt' : vegAmt}, 
         success: function(data) {   
@@ -466,7 +527,7 @@ $("#recp-form").submit(function() {
      });
     
     $.ajax({ 
-        url: "feed_files/submit.php", 
+        url: "Ingredients/insertIng.php", 
         type: "POST", 
         data: { 'ingArray' : fruitArray, 'categ':"fruit", 'ingAmt' : fruitAmt}, 
         success: function(data) {   
@@ -488,7 +549,7 @@ $("#recp-form").submit(function() {
      });
     
     $.ajax({ 
-        url: "feed_files/submit.php", 
+        url: "Ingredients/insertIng.php", 
         type: "POST", 
         data: { 'ingArray' : spiceArray, 'categ':"spice", 'ingAmt' : spiceAmt}, 
         success: function(data) {   
@@ -510,7 +571,7 @@ $("#recp-form").submit(function() {
      });
     
     $.ajax({ 
-        url: "feed_files/submit.php", 
+        url: "Ingredients/insertIng.php", 
         type: "POST", 
         data: { 'ingArray' : condiArray, 'categ':"condi", 'ingAmt' : condiAmt}, 
         success: function(data) {   
@@ -547,10 +608,11 @@ $("#recp-form").submit(function() {
             }).then(function (image) {
                 var ext = $('#croppie-input').val().split('.').pop().toLowerCase();
                 if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-                alert('Invalid form input!');
+                //alert('Invalid form input!');
                 }
+                else {
                 $.ajax({
-                    url: "feed_files/upload.php",
+                    url: "feed_files/uploadUpdate.php",
                     type: "POST",
                     data: {
                         "image" : image
@@ -559,6 +621,7 @@ $("#recp-form").submit(function() {
                     //alert(data);
                     }
                 });
+            }
             });
         });
         $('button#postbtn').prop('disabled', true);
@@ -573,12 +636,8 @@ $("#recp-form").submit(function() {
 
 
 </script>
-
-<?php
+<style>
+    #postform{
+        margin-top: 60px;
     }
-    } 
-else {
-    header('location:index.php');
-    exit();
-}
-?>
+</style>

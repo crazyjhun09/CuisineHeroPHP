@@ -15,7 +15,7 @@ while($row = $result->fetch_assoc()){
             if($resultE = $con->query($sel)){
                 while($rowE = $resultE->fetch_assoc()){
             echo '<div class="card following col-12 col-md-4">
-            <a href="javascript:void(0)" class="link1" var="'.$rowE['id '].'">
+            <a href="javascript:void(0)" class="link1" var="'.$rowE['id'].'">
             <div class="dp">
             <img src="images/'.$row1['dispic'].'">
             </div>

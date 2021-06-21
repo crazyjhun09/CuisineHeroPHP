@@ -247,6 +247,15 @@ cursor: pointer;
 .foodlabel{
     font-family: 'Raleway';
 }
+.recp-opt{
+    border: 1px solid black;
+    width: 80px;
+    background-color: white;
+}
+.recp-opt:hover{
+    filter: invert(100%);
+    transition: 0.3s ease-in-out;
+}
 .card a:link,.card a:visited,.card a:hover,.card a:active{
     text-decoration: none;
     color: black;

@@ -20,6 +20,15 @@ while($row = $result->fetch_assoc()){
             <p>Date Posted: '.substr($row['regdate'],0,16).'</p>
             </div>
             </a>
+            <div class="container-fluid">
+            <div class="row">
+            <div class="col-6 text-center">
+            <button class = "btn recp-opt" id="del-id" data-toggle="modal" data-target=".bd-example-modal-sm" value="'.$row['food_id'].'">Delete</button>
+            </div>
+            <div class="col-6 text-center">
+            <button class = "btn recp-opt" id="edit-recp" value="'.$row['food_id'].'">Edit</button>
+            </div>
+            </div></div>
             </div>
             <form method="post" action="ingr-transfer.php"name="redirect" class="redirect">
             <input type="hidden" class="post" name="post" value="">
