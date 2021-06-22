@@ -192,7 +192,7 @@
                         "food_id" : food_id
                     },
                     success: function (data) {
-                        alert(data);
+                        window.location.reload();
                     }
             });
         });

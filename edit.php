@@ -99,7 +99,7 @@
                       <div class="row" id="sec3">
                         <div class="col text-center" id="formcol">
                             <h1>Edit Recipe</h1>
-                            <form method="POST" action = "Profile/profile.php" id="recp-form">
+                            <form method="POST" action="Profile/profile.php" id="recp-form">
                                 <div id="croppie-demo"></div>
                                 <label for="recimg"><span class="formlabel">Upload Recipe Picture</span></label><br>
                                 <input type="file" id="croppie-input" name="filename" class="text-center">
@@ -458,7 +458,6 @@ $("#recp-form").submit(function() {
              meatAmt.push(amounts);
         }
      });
-
      $.ajax({ 
         url: "Ingredients/insertIng.php", 
         type: "POST", 
