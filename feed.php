@@ -223,6 +223,7 @@
                     </div>
                 </div>
             </div>    
+            <div style="opacity: 0;" id="res"></div>
 </body>
 </html>
 <script>
@@ -377,9 +378,14 @@ $(window).on('beforeunload', function(){
         type: "POST"
 });
 });
-
-
-$("#recp-form").submit(function() {
+var submit = false;
+$("#recp-form").submit(function(e) {
+          setTimeout(function(){
+              submit = true;
+              window.location.replace('Profile/profile.php');
+          }, 2000);
+          if(!submit)
+              e.preventDefault();
     var meatArray = [];var meatAmt = [];
     var oilArray = [];var oilAmt = [];
     var vegArray = [];var vegAmt = [];
@@ -542,7 +548,9 @@ $("#recp-form").submit(function() {
             reader.readAsDataURL(this.files[0]);
         });
 
-        $('#recp-form').submit(function (ev) {
+        $('#recp-form').submit(function (ev, e) {
+            setTimeout(function(){
+              submit = true;
             croppieDemo.croppie('result', {
                 type: 'canvas',
                 size: {width: 400,height: 550,}
@@ -557,12 +565,25 @@ $("#recp-form").submit(function() {
                     data: {
                         "image" : image
                     },
-                    success: function(data) {   
-                    //alert(data);
+                    success: function(data) {
+                        //alert(data);
                     }
                 });
             });
+        }, 1000);
+          if(!submit)
+              e.preventDefault();
         });
+        /*var submit = false;
+     $("#recp-form").submit(function(e) {
+          setTimeout(function(){
+              submit = true;
+              window.location.replace('Profile/profile.php');
+          }, 3000);
+          if(!submit)
+              e.preventDefault();
+        
+     });*/
         $('button#postbtn').prop('disabled', true);
         $('textarea').keyup(function(){    
         if ($('#recname').val().length>0 && $('#cooktime').val().length>0 && $('#preptime').val().length>0 && $('#serve').val().length>0 && $('#proce').val().length>0 && $('#checkbox').prop('checked') && $("#croppie-input").val().length>0){

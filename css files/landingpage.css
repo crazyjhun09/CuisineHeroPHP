@@ -143,7 +143,9 @@
   border-style: solid;
   border-radius: 100px;
   text-decoration: none;
-  margin: 2vh;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
   transition: ease .8s;
 }
 #searchbtn:hover{
@@ -455,8 +457,8 @@ color: black;
 }
 
 #bottom a{
-  padding-left: 10px;
-  margin: 13px;
+  margin: 20px;
+  margin-right: -5px;
   border: solid white;
   height: max-content;
   border-radius: 50px;

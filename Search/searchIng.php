@@ -57,7 +57,7 @@ include '../DB/cred.php';
             	}$prevID = $row["food_id"];
             }
       	}
-      	else{echo '<div class="text-center" id="startsplash" style="position:relative; width:max-content; height:max-content; top:50px; left:150px;">
+      	else{echo '<div class="text-center" id="startsplash" style="width:max-content; height:max-content; margin-top:100px;">
 				<img style="width:auto; height:200px;" src="https://media.giphy.com/media/e1BaXMrzPgNjOgDXwG/giphy.gif">
 				<p style="font-size:30px;"> No Recipe Found :( </p>
 			</div>';}
