@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="css files\landingpage.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Krub' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <header>
     <nav class="navbar navbar-expand-md" id="banner">
@@ -78,7 +80,8 @@
         <div class="col-mid-auto col-sm-3"></div>
     </div>
     <div class="row" data-color="one">
-        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic">
+        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic" data-aos="fade-up"
+     data-aos-duration="2000">
             <div class="images" >
                 <div id="img1">
                     <img id="laptop" src="Images/laptop feed.png">
@@ -112,7 +115,8 @@
             </form>
             </div>
         </div>
-        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic">
+        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic" data-aos="fade-down"
+     data-aos-duration="2000">
             <div class="images" >
                 <div id="img1">
                     <img id="laptop" src="Images\searchsplash.png">
@@ -124,7 +128,8 @@
         <div class="col-mid-auto col-sm-3"></div>
     </div>
     <div class="row" data-color="three">
-        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic">
+        <div class="col-lg-8 col-sm-12 justify-content-center" id="botpic" data-aos="fade-up"
+     data-aos-duration="2000">
             <div class="images" >
                 <div id="img1">
                     <img id="laptop" src="Images\wall.png">
@@ -159,21 +164,21 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="DB/SignUp.php" method="post" class="form-horizontal">
+                    <form action="DB/SignUp.php" method="post" class="form-horizontal" id="signup-form">
                         <div class="form-group control-label">
-                            <input type="text" name="firstname" placeholder="First Name" autocomplete="false" required maxlength="30">
+                            <input type="text" name="firstname" placeholder="First Name" autocomplete="off" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="text" name="lastname" placeholder="Last Name" autocomplete="false" required maxlength="30">
+                            <input type="text" name="lastname" placeholder="Last Name" autocomplete="off" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="email" name="email" placeholder="E-mail" autocomplete="false" required maxlength="30">
+                            <input type="email" name="email" placeholder="E-mail" autocomplete="off" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="password" name="password" id="pw1" placeholder="Password" autocomplete="false" required maxlength="30">
+                            <input type="password" name="password" id="pw1" placeholder="Password" autocomplete="off" required maxlength="30">
                         </div>
                         <div class="form-group control-label">
-                            <input type="password" id="pw2" placeholder="Confirm Password" autocomplete="false" maxlength="30">
+                            <input type="password" id="pw2" placeholder="Confirm Password" autocomplete="off" maxlength="30">
                             <br><span id="match"></span><br>
                         </div>
                         <div id="tnctext">By Signing Up, You are agreeing with the site's <a href="#" data-toggle="modal" data-target="#TNC">Terms and Conditions</a></div>
@@ -262,7 +267,17 @@
 </footer>
 </html>
 <script>
-    var prevScrollpos = window.pageYOffset;
+var submit = false;
+$("#signup-form").submit(function(e) {
+          setTimeout(function(){
+              submit = true;
+              //window.location.replace('feed.php');
+          }, 2000);
+          if(!submit)
+              e.preventDefault();
+     });
+  AOS.init();
+  var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
     var currentScrollPos = window.pageYOffset;
       if (prevScrollpos > currentScrollPos) {
@@ -272,8 +287,6 @@
       }
       prevScrollpos = currentScrollPos;
     }
-</script>
-<script>
     $(window).scroll(function() {
         if(!$("button.navbar-toggler").hasClass('collapsed')){
         $('button.navbar-toggler').click();
@@ -295,9 +308,7 @@
   });    
 }).scroll();
 
-</script>
-<script>
-    $('#Sign').click(function () {
+$('#Sign').click(function () {
     $("#LogFirst").html("Login");
     });
     $("#Feed").click(function () {  
