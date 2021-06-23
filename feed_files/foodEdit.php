@@ -12,7 +12,7 @@ session_start();
         $ytlink = $_POST['ytlink'];
         $food_id = isset($_SESSION['recp-id'])? $_SESSION['recp-id'] : null;
 
-        echo $recName;
+        
         /*$query1 = "SELECT MAX(food_id) AS 'food_id' FROM food";
         $query1 = "SELECT * FROM food WHERE food_id = 2";
         $sql1 = $con ->query($query1);

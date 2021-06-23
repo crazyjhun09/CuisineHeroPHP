@@ -1,6 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['firstname']) && isset($_SESSION['email'])){
+    $_SESSION['max_id']= null;
 ?>
 <!DOCTYPE html>
 <html lang="en">

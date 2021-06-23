@@ -339,6 +339,7 @@ $(document).ready(function () {
         else{
             $('button#postbtn').prop('disabled', true);
         }
+        $("textarea").prop('disabled', true);
         var recname = $("#recname").val();
         var cooktime = $("#cooktime").val();
         var preptime = $("#preptime").val();
@@ -367,6 +368,7 @@ $(document).ready(function () {
      $('button#postbtn').prop('disabled', true);
     $('button#add-Ing').prop('disabled',false);
     $('button#add-Ing').html('Add');
+    $("textarea").prop('disabled', false);
     }
 });
 $(window).on('beforeunload', function(){

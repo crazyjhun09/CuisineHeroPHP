@@ -18,14 +18,8 @@ file_put_contents('../Ingredients/Images/'.$imageName, $data);
 
 
 $sql = "INSERT INTO recipe_images (food_img, food_id, author) VALUES ('$imageName', '$fID', '$email')";//edit crop image
-$result = mysqli_query($db, $sql);
-
-if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-    $msg = "Image uploaded successfully";
-}else{
-    $msg = "Failed to upload image";
-}
-
+mysqli_query($db, $sql);
+/*$result = mysqli_query($db, $sql);
 if ($result) {
     // successfully inserted into database
     $response["success"] = 1;
@@ -40,5 +34,10 @@ if ($result) {
 
     // echoing JSON response
     echo json_encode($response);
+}*/
+if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+    $msg = "Image uploaded successfully";
+}else{
+    $msg = "Failed to upload image";
 }
 ?>

@@ -255,11 +255,11 @@ if($result = $con->query($queryc)){
                                   </div>
                                   <div class="form-group">
                                     <label for="procedures"><span class="formlabel">Procedures:</span></label>
-                                    <textarea class="form-control" rows="5" name="proce" id="proce" required><?php echo $editFood['proced']; ?></textarea>
+                                    <textarea class="form-control" rows="5" name="proce" id="proce" required><?php echo strip_tags($editFood['proced']); ?></textarea>
                                   </div>
                                   <div class="form-group">
                                     <label for="nutri"><span class="formlabel">Nutritional Value (Optional):</span></label>
-                                    <textarea class="form-control" rows="5" name="nutrval" id="nutrval"> <?php echo $editFood['nutri_info']; ?></textarea>
+                                    <textarea class="form-control" rows="5" name="nutrval" id="nutrval"> <?php echo strip_tags($editFood['nutri_info']); ?></textarea>
                                   </div>
                                   <div class="form-group">
                                     <label for="ytlink"><span class="formlabel">Youtube Link Tutorial (Optional): (Right-click video and choose "Copy embed code")</span></label>
@@ -392,6 +392,7 @@ $(document).ready(function () {
         else{
             $('button#postbtn').prop('disabled', true);
         }
+        $("textarea").prop('disabled', true);
         var recname = $("#recname").val();
         var cooktime = $("#cooktime").val();
         var preptime = $("#preptime").val();
@@ -420,6 +421,7 @@ $(document).ready(function () {
      $('button#postbtn').prop('disabled', true);
     $('button#add-Ing').prop('disabled',false);
     $('button#add-Ing').html('Add');
+    $("textarea").prop('disabled', false);
     }
 });
 $(window).on('beforeunload', function(){
