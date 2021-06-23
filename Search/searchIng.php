@@ -14,8 +14,9 @@ include '../DB/cred.php';
 				LEFT OUTER JOIN fruit ON fruit.food_id = condi.food_id
 				LEFT OUTER JOIN oil ON oil.food_id = fruit.food_id
 				LEFT OUTER JOIN spice ON spice.food_id = oil.food_id
+				LEFT OUTER JOIN bake ON bake.food_id = spice.food_id
 				HAVING veggies_name IN ($ings) OR meat_name IN ($ings) OR condi_name IN ($ings) OR
-						fruit_name IN ($ings) OR oil_name IN ($ings) OR spice_name IN ($ings)"); 
+						fruit_name IN ($ings) OR oil_name IN ($ings) OR spice_name IN ($ings) OR bake_name IN ($ings)"); 
 		
 
       	if($sql->num_rows > 0){

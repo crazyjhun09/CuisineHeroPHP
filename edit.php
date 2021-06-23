@@ -19,6 +19,7 @@
   $queryo = "SELECT * FROM oil WHERE food_id = '$food_id'";
   $queryft = "SELECT * FROM fruit WHERE food_id = '$food_id'";
   $queryss = "SELECT * FROM spice WHERE food_id = '$food_id'";
+  $queryb = "SELECT * FROM bake WHERE food_id = '$food_id'";
 
 	if (isset($_POST['search'])) {
 		$response = "";
@@ -131,6 +132,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#category-btn">Protein/Meat</a>
+                                        <a class="dropdown-item" href="#category-btn">Bake/Grains</a>
                                         <a class="dropdown-item" href="#category-btn">Oil/Liquid</a>
                                         <a class="dropdown-item" href="#category-btn">Vegetables</a>
                                         <a class="dropdown-item" href="#category-btn">Fruits</a>
@@ -246,6 +248,19 @@ if($result = $con->query($queryc)){
     }
   }
 }
+if($result = $con->query($queryb)){
+    $row=$result->fetch_assoc();
+    $check = $row['bake_name'];
+      if(isset($check)){
+    $result = $con->query($queryb);
+      while($row = $result->fetch_assoc()) {
+        $categ = 'bake';
+        $bakename = $row["bake_name"];
+        $bakeamt = $row["bake_amt"];
+        echo '<sayo class="ingrds"><button type="button" class="btn delbtn">Del</button><span class ="col-md-4 col-12">'.$categ.'</span><span class ="categs col-md-3 col-12 '.$categ.'">'.$bakename.'</span><span class="col-md-3 col-12 amt-'.$categ.'">'.$bakeamt.'</span></sayo>';
+      }
+    }
+  }
 ?><!--Ingredients will go here-->
                                             </div>
                                         </div>
@@ -335,6 +350,9 @@ $(document).on('click', 'button#add-Ing', function () {
     }
     else if (category.length == 16){
         cl_categ ='spice';
+    }
+    else if (category.length == 11){
+        cl_categ ='bake';
     }
     else{
         cl_categ = null;
@@ -447,6 +465,7 @@ $("#recp-form").submit(function() {
     var fruitArray = [];var fruitAmt = [];
     var spiceArray = [];var spiceAmt = [];
     var condiArray = [];var condiAmt = [];
+    var bakeArray = [];var bakeAmt = [];
 
     $("sayo.ingrds").each(function() {
         var ingredients = [];
@@ -579,6 +598,27 @@ $("#recp-form").submit(function() {
             //alert(data);
         }    
      });   
+     $("sayo.ingrds").each(function() {
+        var ingredients = [];
+        var amounts = [];
+        var ingData = $(this).find('span.bake');
+        var amtData = $(this).find('span.amt-bake');
+        if (ingData.length > 0 && amtData.length > 0) {
+             ingData.each(function() { ingredients.push($(this).text()); });
+             amtData.each(function() { amounts.push($(this).text()); });
+             bakeArray.push(ingredients);
+             bakeAmt.push(amounts);
+        }
+     });
+    
+    $.ajax({ 
+        url: "Ingredients/insertIng.php", 
+        type: "POST", 
+        data: { 'ingArray' : bakeArray, 'categ':"bake", 'ingAmt' : bakeAmt}, 
+        success: function(data) {   
+            //alert(data);
+        }    
+     });  
     });
     var croppieDemo = $('#croppie-demo').croppie({
             enableOrientation: true,

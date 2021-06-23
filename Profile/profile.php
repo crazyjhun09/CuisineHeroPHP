@@ -184,8 +184,11 @@
 </div>
 </html>
 <script type="text/javascript">
+        var food_id;
+        $('button.del-id').on('click',function(){
+            food_id = $(this).val();
+        });
         $('button#del-recp').on('click',function(){
-            var food_id = $('button#del-id').val();
             $.ajax({
                     url: "del-recp.php",
                     type: "POST",
@@ -193,11 +196,12 @@
                         "food_id" : food_id
                     },
                     success: function (data) {
+                        //alert(data);
                         window.location.reload();
                     }
             });
         });
-        $('button#edit-recp').on('click',function(){
+        $('button.edit-recp').on('click',function(){
             var food_id = $(this).val();
             $.ajax({
                     url: "recp-editor.php",

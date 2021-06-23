@@ -22,11 +22,11 @@ while($row = $result->fetch_assoc()){
             </a>
             <div class="container-fluid">
             <div class="row">
-            <div class="col-6 text-center">
-            <button class = "btn recp-opt" id="del-id" data-toggle="modal" data-target=".bd-example-modal-sm" value="'.$row['food_id'].'">Delete</button>
+            <div class="col-6 text-center del-tag">
+            <button class = "btn recp-opt del-id" data-toggle="modal" data-target=".bd-example-modal-sm" value="'.$row['food_id'].'">Delete</button>
             </div>
             <div class="col-6 text-center">
-            <button class = "btn recp-opt" id="edit-recp" value="'.$row['food_id'].'">Edit</button>
+            <button class = "btn recp-opt edit-recp" value="'.$row['food_id'].'">Edit</button>
             </div>
             </div></div>
             </div>

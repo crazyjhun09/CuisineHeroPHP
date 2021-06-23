@@ -174,6 +174,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#category-btn">Protein/Meat</a>
+                                        <a class="dropdown-item" href="#category-btn">Bake/Grains</a>
                                         <a class="dropdown-item" href="#category-btn">Oil/Liquid</a>
                                         <a class="dropdown-item" href="#category-btn">Vegetables</a>
                                         <a class="dropdown-item" href="#category-btn">Fruits</a>
@@ -227,6 +228,7 @@
 </body>
 </html>
 <script>
+var subsuccess = 0;
 window.onload = function() {
    var addPost = localStorage.getItem("active");
    if (addPost == 1){
@@ -283,6 +285,9 @@ $(document).on('click', 'button#add-Ing', function () {
     }
     else if (category.length == 16){
         cl_categ ='spice';
+    }
+    else if (category.length == 11){
+        cl_categ ='bake';
     }
     else{
         cl_categ = null;
@@ -373,26 +378,24 @@ $(document).ready(function () {
     }
 });
 $(window).on('beforeunload', function(){
+    if(subsuccess == 0){
         $.ajax({ 
         url: "feed_files/delete.php", 
         type: "POST"
 });
+    }
 });
-var submit = false;
+var submit1 = false;
 $("#recp-form").submit(function(e) {
           setTimeout(function(){
-              submit = true;
-              window.location.replace('Profile/profile.php');
-          }, 2000);
-          if(!submit)
-              e.preventDefault();
+              submit1 = true;
     var meatArray = [];var meatAmt = [];
     var oilArray = [];var oilAmt = [];
     var vegArray = [];var vegAmt = [];
     var fruitArray = [];var fruitAmt = [];
     var spiceArray = [];var spiceAmt = [];
     var condiArray = [];var condiAmt = [];
-
+    var bakeArray = [];var bakeAmt = [];
     $("sayo.ingrds").each(function() {
         var ingredients = [];
         var amounts = [];
@@ -525,6 +528,31 @@ $("#recp-form").submit(function(e) {
             //alert(data);
         }    
      });   
+     $("sayo.ingrds").each(function() {
+        var ingredients = [];
+        var amounts = [];
+        var ingData = $(this).find('span.bake');
+        var amtData = $(this).find('span.amt-bake');
+        if (ingData.length > 0 && amtData.length > 0) {
+             ingData.each(function() { ingredients.push($(this).text()); });
+             amtData.each(function() { amounts.push($(this).text()); });
+             bakeArray.push(ingredients);
+             bakeAmt.push(amounts);
+        }
+     });
+    
+    $.ajax({ 
+        url: "feed_files/submit.php", 
+        type: "POST", 
+        data: { 'ingArray' : bakeArray, 'categ':"bake", 'ingAmt' : bakeAmt}, 
+        success: function(data) {   
+            //alert(data);
+        }    
+     });  
+     
+         }, 2000);
+          if(!submit1)
+              e.preventDefault();
     });
     var croppieDemo = $('#croppie-demo').croppie({
             enableOrientation: true,
@@ -547,7 +575,7 @@ $("#recp-form").submit(function(e) {
             }
             reader.readAsDataURL(this.files[0]);
         });
-
+        var submit = false;
         $('#recp-form').submit(function (ev, e) {
             setTimeout(function(){
               submit = true;
@@ -567,10 +595,12 @@ $("#recp-form").submit(function(e) {
                     },
                     success: function(data) {
                         //alert(data);
+                        subsuccess++;
+                        window.location.replace('Profile/profile.php');
                     }
                 });
             });
-        }, 1000);
+        }, 4000);
           if(!submit)
               e.preventDefault();
         });

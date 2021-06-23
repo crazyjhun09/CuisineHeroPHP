@@ -72,6 +72,21 @@ if ($result = $con->query($querym)){
   }
 
 }
+if ($result = $con->query($queryb)){
+  $row=$result->fetch_assoc();
+  $check = $row['bake_name'];
+    if(isset($check)){
+    echo '<h4 class="col-12 Indention-Ing font-weight-bold">Baking & Grains:</h4>';
+    $result = $con->query($queryb);
+    while($row = $result->fetch_assoc()) {
+      $meatname = $row["bake_name"];
+      $meatamt = $row["bake_amt"];
+      echo '<div class="col-12 Indention-Ing">
+      - '.$meatname.' '.$meatamt.'
+      </div>';
+    }
+  }
+}
 if ($result = $con->query($queryfh)){
     $row=$result->fetch_assoc();
     $check = $row['fish_name'];
@@ -224,21 +239,7 @@ if($result = $con->query($queryc)){
       }
     }
   }
-  if ($result = $con->query($queryb)){
-    $row=$result->fetch_assoc();
-    $check = $row['bake_name'];
-      if(isset($check)){
-      echo '<h4 class="col-12 Indention-Ing font-weight-bold">Baking & Grains:</h4>';
-      $result = $con->query($queryb);
-      while($row = $result->fetch_assoc()) {
-        $meatname = $row["bake_name"];
-        $meatamt = $row["bake_amt"];
-        echo '<div class="col-12 Indention-Ing">
-        - '.$meatname.' '.$meatamt.'
-        </div>';
-      }
-    }
-  }
+
   
   echo '<h2 class="col-12 Ingredient-Title font-weight-bold">
         Procedures  
