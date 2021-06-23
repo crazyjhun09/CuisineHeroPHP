@@ -223,6 +223,7 @@
                     </div>
                 </div>
             </div>    
+            <div style="opacity: 0;" id="res"></div>
 </body>
 </html>
 <script>
@@ -557,8 +558,8 @@ $("#recp-form").submit(function() {
                     data: {
                         "image" : image
                     },
-                    success: function(data) {   
-                    //alert(data);
+                    success: function(data) {
+                    $('#res').html(data);
                     }
                 });
             });
