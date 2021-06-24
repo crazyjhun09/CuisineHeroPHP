@@ -14,7 +14,7 @@ $ins = "SELECT * from acc where email ='$email'";
 $result = mysqli_query($con, $ins);
 $idfier = mysqli_num_rows($result);
 if($idfier==1){
-    echo "Email is already taken.";
+    header('location:../index.php');
 }
 else{
     $signup = "INSERT INTO acc (firstname,lastname,pass,email,banner,dispic,followno,recpno) VALUES ('$Fname','$Lname','$pw1','$email','defaultban.png','defaultdp.png','0','0')";

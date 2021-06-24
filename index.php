@@ -201,7 +201,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="DB/Login.php" method="POST">
+                    <form action="DB/Login.php" method="POST" id="login-form">
                         <div class="form-group control-label">
                             <input type="email" name="LogEmail" placeholder="E-mail" autocomplete="false">
                         </div>
@@ -268,14 +268,14 @@
 </html>
 <script>
 var submit = false;
-$("#signup-form").submit(function(e) {
+/*$("#signup-form").submit(function(e) {
           setTimeout(function(){
               submit = true;
               //window.location.replace('feed.php');
           }, 2000);
           if(!submit)
               e.preventDefault();
-     });
+     });*/
   AOS.init();
   var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
@@ -307,11 +307,30 @@ $("#signup-form").submit(function(e) {
     }
   });    
 }).scroll();
-
+    var signup1=localStorage.getItem('signup');
+    var login1=localStorage.getItem('login');
+    if(signup1>=1){
+        alert("Email is already taken.");
+    }
+    if(login1>=1){
+        alert("Login failed. Username or Password is incorrect.");
+    }
+    $("#signup-form").submit(function(){
+        var signup=0;
+        signup = parseInt(localStorage.getItem('signup'));
+        localStorage.setItem('signup',signup+1);
+        var log = localStorage.setItem('login',0);
+    });
+    $("#login-form").submit(function(){
+        var login=0;
+        login = parseInt(localStorage.getItem('login'));
+        localStorage.setItem('login',login+1);
+        var sign = localStorage.setItem('signup',0);
+    });
 $('#Sign').click(function () {
     $("#LogFirst").html("Login");
     });
-    $("#Feed").click(function () {  
+    $("#Feed").click(function () {
     $("#LogFirst").html("You need to login first to continue.");
     });
     $('#block').prop('disabled', true);

@@ -623,6 +623,8 @@ $("#recp-form").submit(function(e) {
             $('button#postbtn').prop('disabled', true);
         }
     });
+    var log = localStorage.setItem('login',0);
+    var sign = localStorage.setItem('signup',0);
 
 
 </script>

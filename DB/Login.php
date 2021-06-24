@@ -21,6 +21,7 @@ if($idfier==1){
     header('location:../feed.php');
 }
 else{
+    echo '<script>alert("Email is invalid.");</script>';
     header('location:../index.php');
 }
 ?>
