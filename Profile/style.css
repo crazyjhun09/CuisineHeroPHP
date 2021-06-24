@@ -470,3 +470,6 @@ input[type='password']{
 {
 	background-color: #34b44f;
 }
+input[type='text']#del-acc{
+    color:black;
+}
