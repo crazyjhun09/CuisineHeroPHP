@@ -85,10 +85,10 @@
                   <h3>Write your Comment</h3>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                   <form action="comment.php" method="POST">
                     <textarea class="form-control comments" rows="2" name="comment" placeholder="Write a comment here..." required></textarea>
-                    <button class="comment-btn  commentbtn">Submit</button>
+                    <div id="comdis"><button class='comment-btn commentbtn'>Submit</button></div>
                     </form>
                     <?php include 'disp-cmnt.php'?>
                 </div>
@@ -204,10 +204,13 @@ if (isset($email)){echo"
       $.post('likebtn.php', {liked: '1'});
     }
   });
+  $('#comdis').html('<button class='comment-btn  commentbtn'>Submit</button>');
 
 </script>";
 }else{echo"
   <script>
+  $('button.commentbtn').prop('disabled', true);
+  $('button.commentbtn').text('Login first');
     $('.like-btn').click(function(){
     alert('Login first to like the recipe.')
     });
