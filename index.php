@@ -226,7 +226,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="DB/TnC-Priv.php" frameborder="2" width="700px"></iframe>
+                    <iframe src="DB/TnC-Priv.php" frameborder="2" width="700px" height="400px"></iframe>
                 </div>
         </div>
     </div>

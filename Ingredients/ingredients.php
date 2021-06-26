@@ -88,7 +88,7 @@
                 <div class="modal-body" >
                   <form action="comment.php" method="POST">
                     <textarea class="form-control comments" rows="2" name="comment" placeholder="Write a comment here..." required></textarea>
-                    <div id="comdis"><button class='comment-btn commentbtn'>Submit</button></div>
+                    <button class='comment-btn  commentbtn'>Submit</button>
                     </form>
                     <?php include 'disp-cmnt.php'?>
                 </div>
@@ -204,7 +204,6 @@ if (isset($email)){echo"
       $.post('likebtn.php', {liked: '1'});
     }
   });
-  $('#comdis').html('<button class='comment-btn  commentbtn'>Submit</button>');
 
 </script>";
 }else{echo"
