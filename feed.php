@@ -387,6 +387,8 @@ $(window).on('beforeunload', function(){
 });
 var submit1 = false;
 $("#recp-form").submit(function(e) {
+    $('button#postbtn').prop('disabled', true);
+    $('button#postbtn').text('Uploading...');
           setTimeout(function(){
               submit1 = true;
     var meatArray = [];var meatAmt = [];
