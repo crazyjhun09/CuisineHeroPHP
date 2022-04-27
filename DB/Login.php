@@ -8,20 +8,16 @@ $pw1=$_POST['LogPassword'];
 
 
 $con = mysqli_connect($server,$username,$password,$dbname);
-
-$ins = "SELECT * from acc where email ='$email' && pass='$pw1'";
-$result = mysqli_query($con, $ins);
-$idfier = mysqli_num_rows($result);
-
-if($idfier==1){
-    while ($NameRes = mysqli_fetch_array($result)){
-    $_SESSION['firstname']=$NameRes['firstname'];
-    $_SESSION['email']=$NameRes['email'];
-    }
+$ins = "SELECT * from acc where email ='test@gmail.com'";
+$result = $con->query($ins);
+while ($row = $result ->fetch_assoc()){
+if(password_verify($pw1,$row['pass'])){
+    $_SESSION['firstname']=$row['firstname'];
+    $_SESSION['email']=$row['email'];
     header('location:../feed.php');
 }
 else{
-    echo '<script>alert("Email is invalid.");</script>';
     header('location:../index.php');
+}
 }
 ?>

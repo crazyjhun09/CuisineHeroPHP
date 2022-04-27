@@ -311,9 +311,11 @@ var submit = false;
     var login1=localStorage.getItem('login');
     if(signup1>=1){
         alert("Email is already taken.");
+        localStorage.setItem('signup',0);
     }
     if(login1>=1){
         alert("Login failed. Username or Password is incorrect.");
+        localStorage.setItem('login',0);
     }
     $("#signup-form").submit(function(){
         var signup=0;
